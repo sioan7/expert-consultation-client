@@ -1,0 +1,37 @@
+<div id="top-bar">
+  <div class="toolbar-row" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="has-action" fxLayout="row" fxLayoutAlign="center center" [matMenuTriggerFor]="profileMenu">
+      <mat-icon color="primary">account_circle</mat-icon>
+      <div fxLayout="column" fxLayoutAlign="center start">
+        <span class="mat-small name">Adrian Popescu</span>
+        <span class="mat-small organisation">OAR Bucuresti</span>
+      </div>
+
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item routerLink="/profile">Profil</button>
+        <button mat-menu-item (click)="logout()">Deconectare</button>
+      </mat-menu>
+    </div>
+
+    <mat-toolbar fxLayout="row" fxLayoutAlign="end stretch">
+      <button mat-button routerLink="/about" routerLinkActive="active">Despre</button>
+      <button mat-button routerLink="/consultation" routerLinkActive="active">In consultare</button>
+      <button mat-button routerLink="/archive" routerLinkActive="active">Arhiva</button>
+      <button mat-button routerLink="/members" routerLinkActive="active">Membri</button>
+      <button mat-button routerLink="/login" routerLinkActive="active">Log in</button>
+      <button mat-button [matMenuTriggerFor]="selectLanguage"><span class="flag-icon flag-icon-squared flag-icon-ro"></span></button>
+      <mat-menu #selectLanguage="matMenu">
+        <button mat-menu-item><span class="flag-icon flag-icon-squared flag-icon-ro"></span></button>
+        <button mat-menu-item><span class="flag-icon flag-icon-squared flag-icon-gb"></span></button>
+      </mat-menu>
+    </mat-toolbar>
+  </div>
+  <div class="search-row" fxLayout="row" fxLayoutAlign="end center">
+    <div class="empty"></div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter()" placeholder="Cauta document...">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+</div>

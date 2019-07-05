@@ -21,6 +21,11 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/sass"
+              ]
+            },
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": [
@@ -28,9 +33,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/flag-icon-css/css/flag-icon.min.css",
+              "src/sass/styles.scss",
+              "src/sass/theme.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/hammerjs/hammer.min.js"
+            ]
           },
           "configurations": {
             "production": {
