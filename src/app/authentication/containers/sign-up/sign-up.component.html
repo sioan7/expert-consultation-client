@@ -1,0 +1,101 @@
+<section id="sign-up" fxLayout="column" fxLayoutAlign="center center">
+  <form [formGroup]="signUpForm" fxLayout="column">
+    <mat-form-field>
+      <input
+        matInput
+        #name
+        name="name"
+        maxlength="15"
+        placeholder="Full name"
+        formControlName="name"
+        required
+      />
+
+      <mat-hint align="end">{{ name.value.length }} / 40</mat-hint>
+
+      <mat-error
+        *ngIf="signUpForm.controls.name.hasError('NAME_NOT_EMPTY') || signUpForm.controls.name.hasError('required')">
+        Numele este obligatoriu.
+      </mat-error>
+      <mat-error *ngIf="signUpForm.controls.name.hasError('NAME_MAX_LENGTH_40')">
+        Numele nu poate avea mai mult de 40 caractere.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        #username
+        name="username"
+        maxlength="15"
+        placeholder="Username"
+        required
+        formControlName="username"
+        required
+      />
+
+      <mat-hint align="end">{{ username.value.length }} / 15</mat-hint>
+
+      <mat-error
+        *ngIf="signUpForm.controls.username.hasError('USERNAME_NOT_EMPTY') || signUpForm.controls.username.hasError('required')">
+        Username este obligatoriu.
+      </mat-error>
+      <mat-error *ngIf="signUpForm.controls.username.hasError('USERNAME_MAX_LENGTH_15')">
+        Username-ul nu poate avea mai mult de 15 caractere.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        #email
+        name="email"
+        maxlength="40"
+        placeholder="Email"
+        formControlName="email"
+        type="email"
+        required
+      />
+
+      <mat-hint align="end">{{ email.value.length }} / 40</mat-hint>
+
+      <mat-error
+        *ngIf="signUpForm.controls.email.hasError('EMAIL_NOT_EMPTY') || signUpForm.controls.email.hasError('required')">
+        Email-ul este obligatoriu.
+      </mat-error>
+      <mat-error *ngIf="signUpForm.controls.email.hasError('EMAIL_MAX_LENGTH_40')">
+        Email-ul nu poate avea mai mult de 40 caractere.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        #password
+        name="password"
+        maxlength="100"
+        placeholder="Password"
+        required
+        formControlName="password"
+        type="password"
+        required
+      />
+
+      <mat-hint align="end">{{ password.value.length }} / 100</mat-hint>
+
+      <mat-error
+        *ngIf="signUpForm.controls.password.hasError('PASSWORD_NOT_EMPTY') || signUpForm.controls.password.hasError('required')">
+        Parola este obligatorie.
+      </mat-error>
+      <mat-error *ngIf="signUpForm.controls.password.hasError('PASSWORD_MAX_LENGTH_100')">
+        Parola nu poate avea mai mult de 100 caractere.
+      </mat-error>
+    </mat-form-field>
+
+    <section class="buttons">
+      <button mat-raised-button [disabled]="!signUpForm.valid" color="primary" (click)="onSubmit()">Sign up</button>
+      <button mat-button (click)="onCancel()">Anuleaza</button>
+    </section>
+
+  </form>
+</section>

@@ -5,7 +5,6 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
-  MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -25,6 +24,7 @@ import {
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE
 } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatMomentDateModule, MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 const modules = [

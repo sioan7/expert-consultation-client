@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -15,6 +17,30 @@ export class TopBarComponent implements OnInit {
   logout() {
     alert('That`s sad, you just logged out');
   }
+
   applyFilter() {}
 
+  profile() {
+    this.router.navigate(['home']);
+  }
+
+  about() {
+    this.router.navigate(['about']);
+  }
+
+  consultation() {
+    this.router.navigate(['in-consultation']);
+  }
+
+  archive() {
+    this.router.navigate(['archive']);
+  }
+
+  members() {
+    this.router.navigate(['members']);
+  }
+
+  login() {
+    this.router.navigate(['authentication/log-in']);
+  }
 }

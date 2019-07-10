@@ -1,0 +1,54 @@
+<section id="log-in" fxLayout="column" fxLayoutAlign="center center">
+  <form [formGroup]="logInForm" fxLayout="column">
+    <mat-form-field>
+      <input
+        matInput
+        #username
+        name="username"
+        maxlength="40"
+        placeholder="Username"
+        required
+        formControlName="username"
+      />
+
+      <mat-hint align="end">{{ username.value.length }} / 40</mat-hint>
+
+      <mat-error
+        *ngIf="logInForm.controls.username.hasError('NAME_NOT_EMPTY') || logInForm.controls.username.hasError('required')">
+        Username este obligatoriu.
+      </mat-error>
+      <mat-error *ngIf="logInForm.controls.username.hasError('NAME_MAX_LENGTH_100')">
+        Username-ul nu poate avea mai mult de 100 caractere.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        #password
+        name="password"
+        maxlength="100"
+        placeholder="Password"
+        required
+        formControlName="password"
+        type="password"
+      />
+
+      <mat-hint align="end">{{ password.value.length }} / 100</mat-hint>
+
+      <mat-error
+        *ngIf="logInForm.controls.password.hasError('NAME_NOT_EMPTY') || logInForm.controls.password.hasError('required')">
+        Numele este obligatoriu.
+      </mat-error>
+      <mat-error *ngIf="logInForm.controls.password.hasError('NAME_MAX_LENGTH_100')">
+        Numele nu poate avea mai mult de 100 caractere.
+      </mat-error>
+    </mat-form-field>
+
+    <section class="buttons">
+      <button mat-raised-button [disabled]="!logInForm.valid" color="primary" (click)="onSubmit()">Log in</button>
+      <button mat-button (click)="signUp()">Sign up</button>
+    </section>
+
+  </form>
+</section>
