@@ -1,0 +1,20 @@
+{
+  "required": "Mandatory field.",
+  "validation.Resource.not.found": "Resource was not found.",
+
+  "register": {
+    "Success": "User registered successfully.",
+    "Duplicate.username": "The username is already used.",
+    "Duplicate.email": "The email is already used."
+  },
+
+  "login": {
+    "label": {
+      "Username.or.email": "Username or email",
+      "Password": "Parola"
+    },
+    "Bad.credentials": "The specified username, email or password are not correct.",
+    "UsernameOrEmail.not.empty": "Username or email is mandatory",
+    "Password.not.empty": "Password is mandatory."
+  }
+}

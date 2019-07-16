@@ -1,0 +1,20 @@
+{
+  "required": "Câmp obligatoriu.",
+  "validation.Resource.not.found": "Resursa nu a fost găsită.",
+
+  "register": {
+    "Success": "Utilizatorul a fost înregistrat cu succes.",
+    "Duplicate.username": "Numele de utilizator este deja folosit.",
+    "Duplicate.email": "Adresa de mail este deja folosită."
+  },
+
+  "login": {
+    "label": {
+      "Username.or.email": "Numele de utilizator sau mailul",
+      "Password": "Parola"
+    },
+    "Bad.credentials": "Numele de utilizator, mailul sau parola nu sunt corecte.",
+    "UsernameOrEmail.not.empty": "Numele de utilizator sau mailul este obligatoriu.",
+    "Password.not.empty": "Parola este obligatorie."
+  }
+}

@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 // components
 import * as fromComponents from './components';
@@ -19,6 +20,7 @@ const modules = [
   MaterialModule,
   ReactiveFormsModule,
   RouterModule,
+  TranslateModule,
 ];
 
 @NgModule({

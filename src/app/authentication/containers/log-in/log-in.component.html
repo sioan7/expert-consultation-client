@@ -3,23 +3,19 @@
     <mat-form-field>
       <input
         matInput
-        #username
-        name="username"
+        #usernameOrEmail
+        name="usernameOrEmail"
         maxlength="40"
-        placeholder="Username"
+        placeholder="{{'login.label.Username.or.email' | translate}}"
         required
-        formControlName="username"
+        formControlName="usernameOrEmail"
       />
-
-      <mat-hint align="end">{{ username.value.length }} / 40</mat-hint>
-
-      <mat-error
-        *ngIf="logInForm.controls.username.hasError('NAME_NOT_EMPTY') || logInForm.controls.username.hasError('required')">
-        Username este obligatoriu.
-      </mat-error>
-      <mat-error *ngIf="logInForm.controls.username.hasError('NAME_MAX_LENGTH_100')">
-        Username-ul nu poate avea mai mult de 100 caractere.
-      </mat-error>
+      <mat-hint align="end">{{ usernameOrEmail.value.length }} / 40</mat-hint>
+      <ng-container *ngIf="logInForm.controls.usernameOrEmail.errors">
+        <mat-error *ngFor="let error of logInForm.controls.usernameOrEmail.errors | keyvalue">
+          {{error.key | translate}}
+        </mat-error>
+      </ng-container>
     </mat-form-field>
 
     <mat-form-field>
@@ -28,21 +24,17 @@
         #password
         name="password"
         maxlength="100"
-        placeholder="Password"
+        placeholder="{{'login.label.Password' | translate}}"
         required
         formControlName="password"
         type="password"
       />
-
       <mat-hint align="end">{{ password.value.length }} / 100</mat-hint>
-
-      <mat-error
-        *ngIf="logInForm.controls.password.hasError('NAME_NOT_EMPTY') || logInForm.controls.password.hasError('required')">
-        Numele este obligatoriu.
-      </mat-error>
-      <mat-error *ngIf="logInForm.controls.password.hasError('NAME_MAX_LENGTH_100')">
-        Numele nu poate avea mai mult de 100 caractere.
-      </mat-error>
+      <ng-container *ngIf="logInForm.controls.password.errors">
+        <mat-error *ngFor="let error of logInForm.controls.password.errors | keyvalue">
+          {{error.key | translate : error.value}}
+        </mat-error>
+      </ng-container>
     </mat-form-field>
 
     <section class="buttons">
@@ -51,4 +43,9 @@
     </section>
 
   </form>
+  <ng-container *ngIf="generalErrors">
+    <mat-error *ngFor="let error of generalErrors">
+      {{error.i18nErrorKey | translate : error.i18nErrorArguments}}
+    </mat-error>
+  </ng-container>
 </section>

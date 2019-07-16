@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import {
   // Services
   AuthenticationApiService,
   // Models
-  User,
 } from '@app/core';
-
+import {LoginRequest} from '@app/core/models/login-request';
+import {I18nError} from '@app/core/http/errors/i18n-error';
+import {Tools} from '@app/shared/utils/tools';
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
-  newUser: User;
+  loginRequest: LoginRequest;
   returnUrl: string;
 
   public logInForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    usernameOrEmail: new FormControl('', ),
     password: new FormControl('', [Validators.required]),
   });
+  generalErrors: I18nError[];
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -34,9 +34,9 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logInForm.valueChanges.subscribe((aValue) => {
-      this.newUser = new User();
-      this.newUser.fromForm(aValue);
+    this.logInForm.valueChanges.subscribe((request) => {
+      this.loginRequest = new LoginRequest();
+      this.loginRequest.fromForm(request);
     });
 
     // get return url from route parameters or default to '/'
@@ -45,13 +45,6 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
-    const errorFields = {
-      USERNAME_NOT_EMPTY: 'username',
-      USERNAME_MAX_LENGTH_40: 'username',
-      PASSWORD_NOT_EMPTY: 'password',
-      PASSWORD_MAX_LENGTH_100: 'password',
-    };
-
     for (const control in this.logInForm.controls) {
       if (this.logInForm.controls.hasOwnProperty(control)) {
         this.logInForm.controls[control].markAsUntouched();
@@ -59,17 +52,26 @@ export class LogInComponent implements OnInit {
       }
     }
 
-    const aLogin = this.newUser;
-    this.authenticationApiService.login(aLogin)
+    this.authenticationApiService.login(this.loginRequest)
       .subscribe({
         next: login => this.router.navigate([this.returnUrl]),
         error: errors => {
-          for (const error of errors) {
-            this.logInForm.controls[errorFields[error]].markAsTouched();
-            this.logInForm.controls[errorFields[error]].setErrors({[error]: true});
+          this.generalErrors = Tools.safeGet(() => errors.error.i18nErrors);
+          const i18nFieldErrors: Map<string, I18nError> = Tools.safeGet(() => errors.error.i18nFieldErrors);
+          if (!i18nFieldErrors) {
+            return;
           }
-        }
-      });
+          Object.keys(i18nFieldErrors).forEach((field: string) => {
+            const control: AbstractControl = Tools.safeGet(() => this.logInForm.controls[field]);
+            if (!control) {
+              return;
+            }
+            control.markAsTouched();
+            control.setErrors({
+              [i18nFieldErrors[field].i18nErrorKey]: i18nFieldErrors[field].i18nErrorArguments
+            });
+          });
+        }});
   }
 
   signUp() {

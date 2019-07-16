@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {BaseComponent} from '@app/shared/components/base-component';
+import {takeUntil, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-export class TopBarComponent implements OnInit {
+export class TopBarComponent extends BaseComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  currentLanguage: string;
 
+  constructor(private router: Router,
+              private translate: TranslateService) {
+    super();
+    translate.onLangChange
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((langChange: LangChangeEvent) => this.currentLanguage = langChange.lang);
+  }
   ngOnInit() {
   }
 
@@ -42,5 +52,9 @@ export class TopBarComponent implements OnInit {
 
   login() {
     this.router.navigate(['authentication/log-in']);
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
   }
 }

@@ -19,10 +19,18 @@
       <button mat-button (click)="archive()" routerLinkActive="active">Arhiva</button>
       <button mat-button (click)="members()" routerLinkActive="active">Membri</button>
       <button mat-button (click)="login()" routerLinkActive="active">Log in</button>
-      <button mat-button [matMenuTriggerFor]="selectLanguage"><span class="flag-icon flag-icon-squared flag-icon-ro"></span></button>
+      <button mat-button [matMenuTriggerFor]="selectLanguage">
+        <span class="flag-icon flag-icon-squared"
+              [ngClass]="{'flag-icon-ro': currentLanguage === 'ro', 'flag-icon-gb': currentLanguage === 'en'}">
+        </span>
+      </button>
       <mat-menu #selectLanguage="matMenu">
-        <button mat-menu-item><span class="flag-icon flag-icon-squared flag-icon-ro"></span></button>
-        <button mat-menu-item><span class="flag-icon flag-icon-squared flag-icon-gb"></span></button>
+        <button mat-menu-item (click)="changeLanguage('ro')">
+          <span class="flag-icon flag-icon-squared flag-icon-ro"></span>
+        </button>
+        <button mat-menu-item (click)="changeLanguage('en')">
+          <span class="flag-icon flag-icon-squared flag-icon-gb"></span>
+        </button>
       </mat-menu>
     </mat-toolbar>
   </div>
