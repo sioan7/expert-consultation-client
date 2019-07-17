@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '@env/environment.local';
 import { environment } from '@env/environment';
 
 import { AuthenticationService } from '../services';
 
-import { User } from '../models';
-import {LoginRequest} from '@app/core/models/login-request';
+import { LoginRequest, User, UserRequest } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationApiService {
@@ -41,8 +41,8 @@ export class AuthenticationApiService {
       }));
   }
 
-  sigup(signupForm: User) {
-    return this.http.post<any>(`${environment.api_url}/users/register`, { signupForm });
+  signup(signupForm: UserRequest) {
+    return this.http.post<UserRequest>(`${environment.api_url}/auth/signup`, signupForm);
   }
 
   logout() {

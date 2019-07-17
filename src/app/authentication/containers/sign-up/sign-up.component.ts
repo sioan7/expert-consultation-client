@@ -8,6 +8,7 @@ import {
   AuthenticationApiService,
   // Models
   User,
+  UserRequest
 } from '@app/core';
 
 @Component({
@@ -16,7 +17,7 @@ import {
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  newUser: User;
+  aUser: UserRequest;
 
   public signUpForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -31,8 +32,8 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.signUpForm.valueChanges.subscribe((aValue) => {
-      this.newUser = new User();
-      this.newUser.fromForm(aValue);
+      this.aUser = new UserRequest();
+      this.aUser.fromForm(aValue);
     });
   }
 
@@ -55,8 +56,8 @@ export class SignUpComponent implements OnInit {
       }
     }
 
-    const aSignUp = this.newUser;
-    this.authenticationApiService.sigup(aSignUp)
+    const aSignUp = this.aUser;
+    this.authenticationApiService.signup(aSignUp)
       .subscribe({
         next: signup => this.router.navigate(['authentication/log-in']),
         error: errors => {
@@ -66,7 +67,6 @@ export class SignUpComponent implements OnInit {
           }
         }
       });
-
   }
 
   onCancel() {

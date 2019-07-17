@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '@env/environment';
+
+import { HeaderInterceptor } from './interceptors/header.interceptor';
 
 // not used in production
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -24,6 +27,14 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 
+export const httpInterceptorProviders = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HeaderInterceptor,
+    multi: true
+  },
+];
+=======
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -51,6 +62,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   bootstrap: [AppComponent],
   providers: [
     ...fromGuards.guards,
+    // httpInterceptorProviders
   ],
 })
 export class AppModule {}
