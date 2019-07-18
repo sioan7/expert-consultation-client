@@ -13,7 +13,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
 
 // modules
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from '@app/core';
+import {CoreModule} from '@app/core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 // guards
@@ -34,7 +34,7 @@ export const httpInterceptorProviders = [
     multi: true
   },
 ];
-=======
+
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -62,7 +62,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   bootstrap: [AppComponent],
   providers: [
     ...fromGuards.guards,
-    // httpInterceptorProviders
+    httpInterceptorProviders
   ],
 })
 export class AppModule {}

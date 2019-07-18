@@ -2,13 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { environment } from '@env/environment.local';
 import { environment } from '@env/environment';
-
-import { AuthenticationService } from '../services';
-
 import { LoginRequest, User, UserRequest } from '../models';
+import {AuthenticationService} from '@app/core/services';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationApiService {
