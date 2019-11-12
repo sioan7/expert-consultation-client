@@ -4,17 +4,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { LoginRequest, User, UserRequest } from '../models';
-import {AuthenticationService} from '@app/core/services';
+import { AuthenticationService } from '@app/core/services';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthenticationApiService {
-  private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<User>;
 
-  constructor(
-    private http: HttpClient,
-    private authenticationService: AuthenticationService
-  ) {
+  constructor(private http: HttpClient,
+              private authenticationService: AuthenticationService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(this.authenticationService.getCurrentUser()));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -26,9 +24,9 @@ export class AuthenticationApiService {
   login(loginRequest: LoginRequest) {
     return this.http.post<LoginRequest>(`${environment.api_url}/auth/signin`, loginRequest)
       .pipe(map((auth: any) => {
-        // login successful if there's a jwt token in the response
+        // login successful if there's a jwt accessToken in the response
         if (auth && auth.token) {
-          // store auth details and jwt token in local storage to keep user logged in between page refreshes
+          // store auth details and jwt accessToken in local storage to keep user logged in between page refreshes
           this.authenticationService.setCurrentUser(auth);
           this.currentUserSubject.next(auth);
         }
