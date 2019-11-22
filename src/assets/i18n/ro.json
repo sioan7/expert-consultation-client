@@ -2,13 +2,11 @@
   "required": "Câmp obligatoriu.",
   "email": "Adresă de mail incorectă.",
   "validation.Resource.not.found": "Resursa nu a fost găsită.",
-
   "register": {
     "Success": "Utilizatorul a fost înregistrat cu succes.",
     "Duplicate.username": "Numele de utilizator este deja folosit.",
     "Duplicate.email": "Adresa de mail este deja folosită."
   },
-
   "login": {
     "label": {
       "Username.or.email": "Numele de utilizator sau mailul",
@@ -35,6 +33,15 @@
     "header": {
       "button": {
         "add": "Adaugă membri"
+      }
+    },
+    "file-upload": {
+      "label": {
+        "Choose.file": "Alege fișier",
+        "Uploading": "În curs de încărcare...",
+        "Uploaded.successfully": "Fișier încărcat cu succes!",
+        "Cancel.upload": "Renunță la încarcare",
+        "Error": "Eroare"
       }
     }
   }
