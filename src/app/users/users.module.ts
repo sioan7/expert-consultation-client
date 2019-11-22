@@ -16,7 +16,7 @@ import * as fromGuards from './guards';
   ],
   declarations: [
     ...fromContainers.components,
-    ...fromComponents.components
+    ...fromComponents.components,
   ],
   providers: [
     ...fromGuards.guards,

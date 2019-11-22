@@ -21,6 +21,12 @@ export class UsersService {
       ));
   }
 
+  public save(user: User): Observable<User> {
+    return this.usersApiService.save(user.toJson()).pipe(
+      map((iUser: IUser) => new User(iUser))
+    );
+  }
+
   private fromResponse(userResponse: IUser): User {
     return new User(userResponse);
   }

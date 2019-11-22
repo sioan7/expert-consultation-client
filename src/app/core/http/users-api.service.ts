@@ -21,4 +21,12 @@ export class UsersApiService {
         catchError(aError => observableThrowError(aError))
       );
   }
+
+  public save(user: IUser): Observable<IUser> {
+    return this.http.post<IUser>(`${environment.api_url}/users`, user, {})
+      .pipe(
+        catchError(aError => observableThrowError(aError))
+      );
+  }
+
 }

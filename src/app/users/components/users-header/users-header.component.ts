@@ -16,6 +16,8 @@ export class UsersHeaderComponent implements AfterViewInit {
   public activeViewChanged: EventEmitter<string> = new EventEmitter();
   @Output()
   public searchTermChanged: EventEmitter<string> = new EventEmitter();
+  @Output()
+  public addButtonClicked: EventEmitter<void> = new EventEmitter();
 
   ngAfterViewInit(): void {
     if (!!this.searchTerm) {
@@ -38,5 +40,9 @@ export class UsersHeaderComponent implements AfterViewInit {
   public activateView(view: string) {
     this.activeView = view;
     this.activeViewChanged.emit(view);
+  }
+
+  public onAddButtonClick() {
+    this.addButtonClicked.emit();
   }
 }

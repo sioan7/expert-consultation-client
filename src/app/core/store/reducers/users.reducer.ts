@@ -1,24 +1,29 @@
 import { Filter, IFilter, IPageData, IUser, PageData, User } from '@app/core';
 import * as fromUsers from '../actions/users.action';
+import { Error } from '@app/core/models/error.model';
 
 export interface UserState {
   entities: { [id: number]: IUser };
   loaded: boolean;
   loading: boolean;
+  shouldReload: boolean;
   pageData: IPageData;
   filter: IFilter;
+  error: Error;
 }
 
 export const initialState: UserState = {
   entities: {},
   loaded: false,
   loading: false,
+  shouldReload: true,
   pageData: {} as IPageData,
   filter: {
     pageNumber: 0,
     sortField: 'lastName',
     sortDirection: 'asc',
   } as IFilter,
+  error: {} as Error
 };
 
 export function reducer(state = initialState, action: fromUsers.UsersAction): UserState {
@@ -49,6 +54,7 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
         ...state,
         loading: false,
         loaded: true,
+        shouldReload: false,
         pageData: pageData.toJson(),
         entities,
       };
@@ -62,6 +68,20 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
       } as UserState;
     }
 
+    case fromUsers.UserActionTypes.SaveUserSuccess: {
+      return {
+        ...state,
+        shouldReload: true
+      };
+    }
+
+    case fromUsers.UserActionTypes.SaveUserFail: {
+      return {
+        ...state,
+        error: action.payload
+      };
+    }
+
     default: {
       return {
         ...state,
@@ -73,5 +93,7 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
 export const getUsersEntities = (state: UserState) => state.entities;
 export const getUsersLoading = (state: UserState) => state.loading;
 export const getUsersLoaded = (state: UserState) => state.loaded;
+export const getUsersShouldReload = (state: UserState) => state.shouldReload;
 export const getUsersPageData = (state: UserState) => state.pageData;
 export const getUsersFilter = (state: UserState) => state.filter;
+export const getUsersErrors = (state: UserState) => state.error;

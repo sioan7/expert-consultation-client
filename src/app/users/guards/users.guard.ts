@@ -20,10 +20,10 @@ export class UsersGuard implements CanActivate {
   }
 
   private checkStore(): Observable<boolean> {
-    return this.store.pipe(select(fromStore.getUsersLoaded))
+    return this.store.pipe(select(fromStore.getUsersShouldReload))
       .pipe(
-        tap(loaded => {
-          if (!loaded) {
+        tap((shouldReload) => {
+          if (shouldReload) {
             this.store.dispatch(new fromStore.LoadUsers());
           }
         }),

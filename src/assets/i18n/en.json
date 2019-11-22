@@ -1,14 +1,13 @@
 {
   "required": "Mandatory field.",
-  "email": "Invalid email.",
+  "pattern": "Invalid phone number",
+  "phoneNumber": "Invalid phone number.",
   "validation.Resource.not.found": "Resource was not found.",
-
   "register": {
     "Success": "User registered successfully.",
     "Duplicate.username": "The username is already used.",
     "Duplicate.email": "The email is already used."
   },
-
   "login": {
     "label": {
       "Username.or.email": "Username or email",
@@ -17,6 +16,11 @@
     "Bad.credentials": "The specified username, email or password are not correct.",
     "UsernameOrEmail.not.empty": "Username or email is mandatory",
     "Password.not.empty": "Password is mandatory."
+  },
+  "button": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   },
   "search": {
     "label": "Search"
@@ -32,10 +36,25 @@
         "organisation": "Organisation"
       }
     },
+    "add": {
+      "title": "Add members",
+      "subTitle": "Do you want to add an individual member?",
+      "subTitle.single": "Add new member.",
+      "fromCsv": "Import .csv file",
+      "fromExcel": "Copy/paste from excel document"
+    },
     "header": {
       "button": {
         "add": "Add members"
       }
+    },
+    "form": {
+      "title": "Add member"
+    }
+  },
+  "user": {
+    "save": {
+      "duplicatedEmail": "Email already in use."
     }
   }
 }
