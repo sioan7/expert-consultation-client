@@ -1,6 +1,5 @@
-import { Filter, IFilter, IPageData, IUser, PageData, User } from '@app/core';
+import { Filter, IFilter, IPageData, IUser, PageData, User, Error } from '../../models';
 import * as fromUsers from '../actions/users.action';
-import { Error } from '@app/core/models/error.model';
 
 export interface UserState {
   entities: { [id: number]: IUser };

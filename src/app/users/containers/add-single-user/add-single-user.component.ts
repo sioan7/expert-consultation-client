@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, UsersService } from '@app/core';
+import { User, UserService } from '@app/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromStore from '@app/core/store';
@@ -17,7 +17,7 @@ export class AddSingleUserComponent {
   private error$: Observable<Error> = this.store.select(fromStore.getUsersErrors);
 
   constructor(private router: Router,
-              private usersService: UsersService,
+              private usersService: UserService,
               private store: Store<CoreState>) {
   }
 

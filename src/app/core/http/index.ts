@@ -1,11 +1,11 @@
-import { AuthenticationApiService } from '@app/core/http/authentication-api.service';
-import { UsersApiService } from '@app/core/http/users-api.service';
+import { AuthenticationApiService } from './authentication-api.service';
+import { UserApiService } from './user-api.service';
 
 
 export const httpServices: any[] = [
   AuthenticationApiService,
-  UsersApiService,
+  UserApiService,
 ];
 
 export * from './authentication-api.service';
-export * from './users-api.service';
+export * from './user-api.service';

@@ -1,10 +1,9 @@
-import {createSelector} from '@ngrx/store';
-import {getCoreState} from '@app/core/store';
+import { createSelector } from '@ngrx/store';
 import * as fromFeature from '../reducers';
 import * as fromUsers from '../reducers/users.reducer';
-import {Filter, IFilter, IPageData, IUser, PageData, User} from '@app/core';
+import { Filter, IFilter, IPageData, IUser, PageData, User } from '../../models';
 
-export const getUsersState = createSelector(getCoreState, (state: fromFeature.CoreState) => state.users);
+export const getUsersState = createSelector(fromFeature.getCoreState, (state: fromFeature.CoreState) => state.users);
 
 const getUsersEntitiesAsInterfaces = createSelector(getUsersState, fromUsers.getUsersEntities);
 export const getUsersEntities = createSelector(getUsersEntitiesAsInterfaces,

@@ -3,11 +3,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Filter, IUser } from '@app/core';
-import { Page } from '@app/core/models/page.model';
+import { Filter, IUser, Page } from '../models';
 
 @Injectable()
-export class UsersApiService {
+export class UserApiService {
   constructor(private http: HttpClient) {
   }
 

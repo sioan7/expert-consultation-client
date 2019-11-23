@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Filter, Page, User } from '@app/core';
-import { Error } from '@app/core/models/error.model';
+import { Error, Filter, Page, User } from '../../models';
 
 export enum UserActionTypes {
   LoadUsers = '[Users] Load Users',

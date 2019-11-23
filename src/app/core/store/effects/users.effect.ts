@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as usersActions from '../actions/users.action';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { User, UsersService } from '@app/core';
+import { UserService } from '../../services';
 import { of } from 'rxjs';
-import { Page } from '@app/core/models/page.model';
+import { Error, Page, User } from '../../models';
 import { Router } from '@angular/router';
-import { Error } from '@app/core/models/error.model';
 
 @Injectable()
 export class UsersEffects {
@@ -42,11 +41,11 @@ export class UsersEffects {
   );
 
   constructor(private actions$: Actions,
-              private usersService: UsersService,
+              private usersService: UserService,
               private router: Router) {
   }
 
   mapPayloadToUserSaveError(payload: any): Error {
-    return  payload.error.i18nFieldErrors;
+    return payload.error.i18nFieldErrors;
   }
 }
