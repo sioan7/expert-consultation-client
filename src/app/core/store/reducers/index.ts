@@ -1,9 +1,11 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import * as fromUsers from './users.reducer';
 import * as fromFileUpload from './file-upload.reducer';
+import {DocumentsState} from '@app/documents/store';
 
 export interface State {
   core: CoreState;
+  documents: DocumentsState;
 }
 
 export interface CoreState {

@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DocumentsComponent } from './containers/documents/documents.component';
+import * as fromContainers from './containers';
 
 const routes: Routes = [
   {
     path: '',
-    component: DocumentsComponent,
+    component: fromContainers.DocumentsComponent,
+  },
+  {
+    path: ':documentId/breakdown',
+    component: fromContainers.DocumentBreakdownComponent,
   },
 ];
 
