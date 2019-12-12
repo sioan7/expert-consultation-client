@@ -7,7 +7,7 @@
 * start an nginx with the client:
 ``` shell
 npm instal
-npm run-scrypt build
+npm run-script build
 docker-compose -f etc/docker/docker-compose-dev.yml up --build
 ```
 * clone and start an nginx with the client:
