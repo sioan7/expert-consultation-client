@@ -6,7 +6,7 @@
 # Docker-compose scenarios
 * start an nginx with the client:
 ``` shell
-npm instal
+npm install
 npm run-script build
 docker-compose -f etc/docker/docker-compose-dev.yml up --build
 ```
