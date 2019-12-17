@@ -8,11 +8,11 @@ import { BaseComponent } from '@app/shared/components/base-component';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
-  styleUrls: ['./users-table.component.scss']
+  styleUrls: ['./users-table.component.scss'],
 })
 export class UsersTableComponent extends BaseComponent implements OnInit, AfterViewInit {
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   @Input() users: User[];
   @Input() pageData: PageData;
@@ -49,7 +49,8 @@ export class UsersTableComponent extends BaseComponent implements OnInit, AfterV
             return of([]);
           }),
           takeUntil(this.destroyed$)
-        ).subscribe();
+        )
+        .subscribe();
     }
   }
 
@@ -61,5 +62,4 @@ export class UsersTableComponent extends BaseComponent implements OnInit, AfterV
 
     return filter;
   }
-
 }

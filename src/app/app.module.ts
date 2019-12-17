@@ -21,6 +21,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { JwtInterceptor } from '@app/authentication/jwt.interceptor';
 import { FileUploadModule } from 'ng2-file-upload';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 
@@ -28,12 +29,12 @@ export const httpInterceptorProviders = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HeaderInterceptor,
-    multi: true
+    multi: true,
   },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
-    multi: true
+    multi: true,
   },
 ];
 
@@ -47,26 +48,28 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CoreModule,
     SharedModule,
     FileUploadModule,
+    FlexLayoutModule,
     AppRoutingModule,
-    StoreModule.forRoot([], {metaReducers}),
+    StoreModule.forRoot([], { metaReducers }),
     EffectsModule.forRoot([]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   declarations: [
     AppComponent,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [
+    AppComponent,
+  ],
   providers: [
     ...fromGuards.guards,
     httpInterceptorProviders,
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

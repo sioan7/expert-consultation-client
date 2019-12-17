@@ -36,6 +36,9 @@
         "organisation": "Organizație"
       }
     },
+    "card": {
+      "viewProfile": "Vezi profil"
+    },
     "add": {
       "title": "Adaugă membri",
       "subTitle": "Vrei să adaugi membri individual?",

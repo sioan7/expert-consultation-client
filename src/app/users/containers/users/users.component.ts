@@ -9,17 +9,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
   public users$: Observable<User[]> = this.store.pipe(select(fromStore.getUsers));
   public usersPageData$: Observable<PageData> = this.store.pipe(select(fromStore.getUsersPageData));
+  public activeView: string;
   private usersLoaded$: Observable<boolean> = this.store.pipe(select(fromStore.getUsersLoaded));
   private filter$: Observable<Filter> = this.store.pipe(select(fromStore.getUsersFilter));
 
-  constructor(private store: Store<CoreState>,
-              private router: Router) {
-  }
+  constructor(private store: Store<CoreState>, private router: Router) {}
 
   public onFilterChange(filter: Filter) {
     this.store.dispatch(new fromStore.LoadUsers(filter));
@@ -27,5 +26,9 @@ export class UsersComponent {
 
   public onButtonClicked() {
     this.router.navigate(['/users/add']);
+  }
+
+  toggleActiveView(event) {
+    this.activeView = event;
   }
 }

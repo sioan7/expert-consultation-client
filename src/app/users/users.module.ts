@@ -20,7 +20,6 @@ import * as fromGuards from './guards';
   ],
   providers: [
     ...fromGuards.guards,
-  ]
+  ],
 })
-export class UsersModule {
-}
+export class UsersModule {}

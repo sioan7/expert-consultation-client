@@ -5,8 +5,7 @@ import { AddSingleUserComponent } from '@app/users/containers/add-single-user/ad
 export const components: any[] = [
   UsersComponent,
   AddUserComponent,
-  AddSingleUserComponent
+  AddSingleUserComponent,
 ];
 
 export * from './users/users.component';
-
