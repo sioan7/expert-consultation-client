@@ -45,7 +45,7 @@ export const getCompleted = (state: FileUploadState): boolean =>
 
 export const getResult = (state: FileUploadState): any => state.result;
 
-export function fileUploadReducer(state = initialState, action: FileUploadAction): FileUploadState {
+export function reducer(state = initialState, action: FileUploadAction): FileUploadState {
   switch (action.type) {
     case FileUploadActionTypes.UPLOAD_REQUEST: {
       return {

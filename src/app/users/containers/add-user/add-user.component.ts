@@ -14,4 +14,8 @@ export class AddUserComponent {
     this.router.navigate(['/users/add/single']);
   }
 
+  public redirectToImport() {
+    this.router.navigate(['/users/add/csv']);
+  }
+
 }

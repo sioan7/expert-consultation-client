@@ -28,4 +28,11 @@ export class UserApiService {
       );
   }
 
+  public saveMultiple(users: IUser[]): Observable<IUser[]> {
+    return this.http.post<IUser[]>(`${environment.api_url}/users/bulk`, users, {})
+      .pipe(
+        catchError(aError => observableThrowError(aError))
+      );
+  }
+
 }

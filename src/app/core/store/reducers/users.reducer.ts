@@ -1,4 +1,4 @@
-import { Filter, IFilter, IPageData, IUser, PageData, User, Error } from '../../models';
+import { Error, Filter, IFilter, IPageData, IUser, PageData, User } from '../../models';
 import * as fromUsers from '../actions/users.action';
 
 export interface UserState {

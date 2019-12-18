@@ -4,8 +4,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
-
-import { HeaderInterceptor } from './interceptors/header.interceptor';
 // not used in production
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -26,11 +24,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 
 export const httpInterceptorProviders = [
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HeaderInterceptor,
-    multi: true,
-  },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,

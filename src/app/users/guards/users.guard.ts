@@ -27,7 +27,7 @@ export class UsersGuard implements CanActivate {
             this.store.dispatch(new fromStore.LoadUsers());
           }
         }),
-        filter(loaded => loaded),
+        filter(shouldReload => !shouldReload),
         take(1)
       );
   }
