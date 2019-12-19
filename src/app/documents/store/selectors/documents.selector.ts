@@ -1,4 +1,4 @@
-import {createSelector} from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import * as fromFeature from '../reducers';
 import * as fromDocuments from '../reducers/documents.reducer';
 import {DocumentConsolidate, IDocumentConsolidate} from '@app/documents/models/document-consolidate.model';
@@ -28,5 +28,3 @@ export const getDocuments = createSelector(getDocumentsEntities,
 export const getDocumentsLoaded = createSelector(getDocumentsState, fromDocuments.getDocumentsLoaded);
 export const getDocumentsLoading = createSelector(getDocumentsState, fromDocuments.getDocumentsLoading);
 export const getDocumentsPageData = createSelector(getDocumentsState, fromDocuments.getDocumentsPageData);
-
-

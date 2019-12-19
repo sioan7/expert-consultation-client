@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import * as fromContainers from './containers';
 
 const routes: Routes = [
@@ -12,6 +11,10 @@ const routes: Routes = [
     path: ':documentId/breakdown',
     component: fromContainers.DocumentBreakdownComponent,
   },
+  {
+    path: 'add',
+    component: fromContainers.AddDocumentComponent,
+  }
 ];
 
 @NgModule({
@@ -22,4 +25,5 @@ const routes: Routes = [
     RouterModule,
   ],
 })
-export class DocumentsRoutingModule {}
+export class DocumentsRoutingModule {
+}
