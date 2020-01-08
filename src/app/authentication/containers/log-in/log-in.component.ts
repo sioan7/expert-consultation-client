@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {I18nError} from '@app/core/http/errors/i18n-error';
-import {Tools} from '@app/shared/utils/tools';
-import {AuthenticationApiService} from '@app/core/http';
-import {LoginRequest} from '@app/core/models';
+import { I18nError } from '@app/core/http/errors/i18n-error';
+import { Tools } from '@app/shared/utils/tools';
+import { AuthenticationApiService } from '@app/core/http';
+import { LoginRequest } from '@app/core/models';
+
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',

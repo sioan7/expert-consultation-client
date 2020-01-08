@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '@app/shared/components/base-component';
 import { takeUntil } from 'rxjs/operators';
+import { AuthenticationApiService } from '@app/core';
 
 @Component({
   selector: 'app-top-bar',
@@ -15,18 +16,20 @@ export class TopBarComponent extends BaseComponent implements OnInit {
   currentLanguage: string;
 
   constructor(private router: Router,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private authenticationApiService: AuthenticationApiService) {
     super();
     translate.onLangChange
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((langChange: LangChangeEvent) => this.currentLanguage = langChange.lang);
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe((langChange: LangChangeEvent) => this.currentLanguage = langChange.lang);
   }
 
   ngOnInit() {
   }
 
   logout() {
-    alert('That`s sad, you just logged out');
+    this.authenticationApiService.logout();
+    this.router.navigate(['/']);
   }
 
   applyFilter() {
