@@ -6,8 +6,10 @@ import { environment } from '@env/environment.local';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
+  EXCLUDED_URLS = ['api/users/extract'];
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!request.url.includes(environment.api_url) || this.isMultipartFileRequest(request.url)) {
+    if (!request.url.includes(environment.api_url) || this.isMultipartFileRequest(request.url) || this.isExcluded(request.url)) {
       return next.handle(request);
     }
 
@@ -19,6 +21,10 @@ export class HeaderInterceptor implements HttpInterceptor {
     });
 
     return next.handle(modified);
+  }
+
+  private isExcluded(requestUrl: string) {
+    return this.EXCLUDED_URLS.some(url => requestUrl.includes(url));
   }
 
   private isMultipartFileRequest(url: string) {

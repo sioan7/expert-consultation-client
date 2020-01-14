@@ -21,8 +21,8 @@ import { CoreState } from '@app/core/store';
                                         (update)="onImportedUserUpdate($event)"
                                         (delete)="onImportedUserDelete($event)"></app-imported-users-table-row>
       </div>
-      <div *ngIf="importedUsers.length > 0" class="column add-button-wrapper">
-          <button class="add-button" mat-flat-button (click)="onSaveImportedUsers()">
+      <div *ngIf="importedUsers.length > 0" class="ec-button-wrapper">
+          <button class="ec-button" mat-flat-button (click)="onSaveImportedUsers()">
               {{"button.save" | translate}}
           </button>
       </div>

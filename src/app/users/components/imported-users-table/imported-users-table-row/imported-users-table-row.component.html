@@ -3,14 +3,14 @@
     <div class="flex-row first" role="cell"><input matInput formControlName="lastName">
     </div>
     <div class="flex-row" role="cell"><input matInput formControlName="firstName"></div>
-    <div class="flex-row" role="cell"><input matInput formControlName="email"></div>
+    <div class="flex-row" role="cell"><input matInput formControlName="email" readonly></div>
     <div class="flex-row" role="cell"><input matInput formControlName="phoneNumber">
     </div>
     <div class="flex-row" role="cell"><input matInput formControlName="district"></div>
     <div class="flex-row" role="cell"><input matInput formControlName="organisation">
     </div>
     <div class="flex-row delete-column" role="cell">
-      <i class="material-icons cursor-pointer" (click)="deleteUser()">delete</i>
+      <em class="material-icons cursor-pointer" (click)="deleteUser()">delete</em>
     </div>
   </div>
 </form>
