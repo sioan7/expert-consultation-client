@@ -1,0 +1,54 @@
+<div class="mat-elevation-z8 table-wrapper">
+  <mat-table #table [dataSource]="documents" fxFlex>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>
+        {{'documents.table.column.name' | translate}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let document">
+        <mat-icon class="document-item-arrow">play_arrow</mat-icon>
+        {{ document.documentTitle }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef>
+        {{'documents.table.column.date' | translate}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let document">{{ document.dateOfDevelopment | date}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef>
+        {{'documents.table.column.type' | translate}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let document">{{ document.documentType }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="initiator">
+      <mat-header-cell *matHeaderCellDef>
+        {{'documents.table.column.initiator' | translate}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let document">{{ document.documentInitializer }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let document">
+        <span class="document-item-status">TEST</span>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="tableConfig.displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tableConfig.displayedColumns;"></mat-row>
+
+  </mat-table>
+  <div class="table-footer">
+    <mat-paginator #paginator
+                   [hidePageSize]="true"
+                   [length]="pageData.totalElements"
+                   [pageIndex]="pageData.number"
+                   [pageSize]="pageData.size"
+                   [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+</div>

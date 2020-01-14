@@ -1,4 +1,4 @@
-import { DocumentType } from '@app/documents/types/enums';
+import { DocumentType } from './document-type.enum';
 
 export interface IDocumentMetadata {
   id: string;

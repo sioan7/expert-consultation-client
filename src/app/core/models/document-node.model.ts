@@ -1,4 +1,4 @@
-import {DocumentNodeType} from '@app/documents/types/enums';
+import { DocumentNodeType } from './document-node-type.enum';
 
 export interface IDocumentNode {
   id: string;

@@ -1,5 +1,5 @@
-import {DocumentMetadata, IDocumentMetadata} from '@app/documents/models/document-metadata.model';
-import {DocumentNode, IDocumentNode} from '@app/documents/models/document-node.model';
+import {DocumentMetadata, IDocumentMetadata} from './document-metadata.model';
+import {DocumentNode, IDocumentNode} from './document-node.model';
 
 export interface IDocumentConsolidate {
   id: string;

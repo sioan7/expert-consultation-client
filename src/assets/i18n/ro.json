@@ -25,6 +25,26 @@
   "search": {
     "label": "Caută"
   },
+  "documents": {
+    "add": {
+      "title": "Adaugă document"
+    },
+    "table": {
+      "type": "documente",
+      "sort": {
+        "year": "An",
+        "type": "Tip document",
+        "initiator": "Inițiator",
+        "status": "Stare"
+      },
+      "column": {
+        "name": "Nume document",
+        "date": "Data publicării",
+        "type": "Tip document",
+        "initiator": "Inițiator"
+      }
+    }
+  },
   "users": {
     "table": {
       "column": {
@@ -83,6 +103,11 @@
       "release": "Data eliberării",
       "receiving": "Data primirii",
       "file": "Incarcă documentul"
+    }
+  },
+  "table": {
+    "sort": {
+      "title": "Sortează după"
     }
   }
 }

@@ -13,12 +13,6 @@ import { Router } from '@angular/router';
 export class ImportUsersEffects {
 
   @Effect()
-  importFromCsvEffect$: Observable<importUsersActions.ImportFromCsvSuccess> = this.actions$.pipe(
-    ofType(fileUploadActions.FileUploadActionTypes.UPLOAD_COMPLETED_WITH_RESPONSE),
-    map((response: UploadCompletedWithResponseAction) => new importUsersActions.ImportFromCsvSuccess(response.payload as User[]))
-  );
-
-  @Effect()
   saveImportedEffect$ = this.actions$.pipe(
     ofType(importUsersActions.ImportUserActionTypes.SaveImportedUsers),
     switchMap(() => {

@@ -25,23 +25,23 @@ export const initialState: FileUploadState = {
 export const getError = (state: FileUploadState): string => state.error;
 
 export const getStarted = (state: FileUploadState): boolean =>
-  state.status === UploadStatus.Started;
+    state.status === UploadStatus.Started;
 
 export const getRequested = (state: FileUploadState): boolean =>
-  state.status === UploadStatus.Requested;
+    state.status === UploadStatus.Requested;
 
 export const getReady = (state: FileUploadState): boolean => state.status === UploadStatus.Ready;
 
 export const getProgress = (state: FileUploadState): number => state.progress;
 
 export const getInProgress = (state: FileUploadState): boolean =>
-  state.status === UploadStatus.Started && state.progress >= 0;
+    state.status === UploadStatus.Started && state.progress >= 0;
 
 export const getFailed = (state: FileUploadState): boolean =>
-  state.status === UploadStatus.Failed;
+    state.status === UploadStatus.Failed;
 
 export const getCompleted = (state: FileUploadState): boolean =>
-  state.status === UploadStatus.Completed;
+    state.status === UploadStatus.Completed;
 
 export const getResult = (state: FileUploadState): any => state.result;
 
@@ -97,6 +97,15 @@ export function reducer(state = initialState, action: FileUploadAction): FileUpl
         ...state,
         status: UploadStatus.Completed,
         progress: 100,
+        error: null
+      };
+    }
+    case FileUploadActionTypes.UPLOAD_COMPLETED_WITH_RESPONSE: {
+      return {
+        ...state,
+        status: UploadStatus.Completed,
+        progress: 100,
+        result: action.payload as string,
         error: null
       };
     }

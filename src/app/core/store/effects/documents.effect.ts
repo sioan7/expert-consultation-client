@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import * as documentsActions from '../actions/documents.actions';
+import * as documentsActions from '../actions';
 import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
-import { DocumentsService } from '@app/documents/services';
+import { DocumentsService } from '../../services';
 import { Error, Page } from '@app/core';
-import { DocumentConsolidate } from '@app/documents/models/document-consolidate.model';
 import { of } from 'rxjs';
+import { DocumentConsolidate, DocumentMetadata } from '../../models/';
 import { CoreState } from '@app/core/store';
 import { Store } from '@ngrx/store';
-import { DocumentMetadata } from '@app/documents/models/document-metadata.model';
 
 @Injectable()
-export class DocumentsEffects {
+export class DocumentsEffect {
+
   @Effect()
   loadDocuments$ = this.actions$.pipe(
       ofType(documentsActions.DocumentsActionTypes.LoadDocuments),
-      switchMap(() => this.documentsService.list()),
-      map((documentsPage: Page<DocumentConsolidate>) => new documentsActions.LoadDocumentsSuccess(documentsPage)),
-      catchError(error => of(new documentsActions.LoadDocumentsFail(error)))
-  );
+      switchMap(() => this.documentsService.list()
+          .pipe(
+              map((documentsPage: Page<DocumentMetadata>) => new documentsActions.LoadDocumentsSuccess(documentsPage)),
+              catchError(error => of(new documentsActions.LoadDocumentsFail(error)))
+          )
+      ));
 
   @Effect()
   saveDocument$ = this.actions$.pipe(

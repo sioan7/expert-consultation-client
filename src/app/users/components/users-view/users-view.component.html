@@ -1,19 +1,15 @@
-<div [ngSwitch]="activeView">
-  <app-users-table
-    *ngSwitchCase="'list'"
-    [filter]="filter"
-    [pageData]="pageData"
-    [loading]="loading"
-    [users]="users"
-    (filterChange)="onFilterChange($event)"
-  >
+<div [ngSwitch]="activeView" class="users-view-wrapper">
+  <app-users-table (filterChange)="onFilterChange($event)"
+                   *ngSwitchCase="'list'"
+                   [filter]="filter"
+                   [loading]="loading"
+                   [pageData]="pageData"
+                   [users]="users">
   </app-users-table>
-  <app-users-cards
-    *ngSwitchCase="'card'"
-    [filter]="filter"
-    [pageData]="pageData"
-    [loading]="loading"
-    [users]="users"
-  >
+  <app-users-cards *ngSwitchCase="'card'"
+                   [filter]="filter"
+                   [loading]="loading"
+                   [pageData]="pageData"
+                   [users]="users">
   </app-users-cards>
 </div>

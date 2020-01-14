@@ -1,7 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Page } from '@app/core';
-import { DocumentConsolidate } from '@app/documents/models/document-consolidate.model';
-import { IDocumentMetadata } from '@app/documents/models/document-metadata.model';
+import { IDocumentMetadata, DocumentConsolidate, Page, DocumentMetadata } from '../../models';
 
 export enum DocumentsActionTypes {
   LoadDocuments = '[Documents] Load Documents',
@@ -19,13 +17,15 @@ export class LoadDocuments implements Action {
 export class LoadDocumentsSuccess implements Action {
   readonly type = DocumentsActionTypes.LoadDocumentsSuccess;
 
-  constructor(public payload: Page<DocumentConsolidate>) {}
+  constructor(public payload: Page<DocumentMetadata>) {
+  }
 }
 
 export class LoadDocumentsFail implements Action {
   readonly type = DocumentsActionTypes.LoadDocumentsFail;
 
-  constructor(public error: any) {}
+  constructor(public error: any) {
+  }
 }
 
 export class SaveDocument implements Action {
@@ -46,7 +46,7 @@ export class SaveDocumentFail implements Action {
   constructor(public payload: any) {}
 }
 
-export type DocumentsActions =
+export type DocumentsAction =
     | LoadDocuments
     | LoadDocumentsFail
     | LoadDocumentsSuccess

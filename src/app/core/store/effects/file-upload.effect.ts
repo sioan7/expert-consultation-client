@@ -20,23 +20,22 @@ import {
 export class UploadFileEffects {
   @Effect()
   uploadFileEffect$: Observable<{}> = this.actions$.pipe(
-    ofType(fileUploadActions.FileUploadActionTypes.UPLOAD_REQUEST),
-    concatMap((action: fileUploadActions.UploadRequestAction) =>
-      this.fileUploadService.uploadFile(action.payload.file, action.payload.url).pipe(
-        takeUntil(
-          this.actions$.pipe(
-            ofType(FileUploadActionTypes.UPLOAD_CANCEL)
+      ofType(fileUploadActions.FileUploadActionTypes.UPLOAD_REQUEST),
+      concatMap((action: fileUploadActions.UploadRequestAction) =>
+          this.fileUploadService.uploadFile(action.payload.file, action.payload.url).pipe(
+              takeUntil(
+                  this.actions$.pipe(
+                      ofType(FileUploadActionTypes.UPLOAD_CANCEL)
+                  )
+              ),
+              map((event: HttpEvent<any>) => this.getActionFromHttpEvent(event)),
+              catchError(error => of(this.handleError(error)))
           )
-        ),
-        map((event: HttpEvent<any>) => this.getActionFromHttpEvent(event)),
-        catchError(error => of(this.handleError(error)))
       )
-    )
   );
 
-  constructor(
-    private fileUploadService: FileUploadService,
-    private actions$: Actions) {
+  constructor(private fileUploadService: FileUploadService,
+              private actions$: Actions) {
   }
 
   private getActionFromHttpEvent(event: HttpEvent<any>): Action {
@@ -51,23 +50,23 @@ export class UploadFileEffects {
           progress: Math.round((100 * event.loaded) / event.total)
         });
       }
-      case HttpEventType.ResponseHeader:
-        switch (event.status) {
-          case 200:
-          case 201:
-            return new UploadCompletedAction();
-          default:
-            return new UploadFailureAction({ error: event.statusText });
-        }
       case HttpEventType.Response: {
         switch (event.status) {
           case 200:
           case 201:
             return new UploadCompletedWithResponseAction(event.body);
           default:
-            return new UploadFailureAction({ error: event.statusText });
+            return new UploadFailureAction({error: event.statusText});
         }
       }
+      case HttpEventType.ResponseHeader:
+        switch (event.status) {
+          case 200:
+          case 201:
+            return new UploadCompletedAction();
+          default:
+            return new UploadFailureAction({error: event.statusText});
+        }
       case HttpEventType.DownloadProgress: {
         return new UploadCompletedAction();
       }

@@ -5,8 +5,8 @@ import * as fromFilePathActions from '@app/core/store/actions';
 import * as fromFilePath from '@app/core/store/selectors';
 import { BaseComponent } from '@app/shared/components/base-component';
 import { takeUntil, tap } from 'rxjs/operators';
-import { DocumentMetadata } from '@app/documents/models/document-metadata.model';
-import * as fromStore from '@app/documents/store';
+import * as fromStore from '@app/core/store';
+import { DocumentMetadata } from '@app/core';
 
 @Component({
   templateUrl: './add-document.component.html',
@@ -22,15 +22,15 @@ export class AddDocumentComponent extends BaseComponent {
     super();
 
     this.filePath$.pipe(
-      tap(filePath => {
-        if (this.filePath && this.filePath !== '') {
-          this.store$.dispatch(
-            new fromFilePathActions.DeleteRequest(this.filePath)
-          );
-        }
-        this.filePath = filePath;
-      }),
-      takeUntil(this.destroyed$)
+        tap(filePath => {
+          if (this.filePath && this.filePath !== '') {
+            this.store$.dispatch(
+                new fromFilePathActions.DeleteRequest(this.filePath)
+            );
+          }
+          this.filePath = filePath;
+        }),
+        takeUntil(this.destroyed$)
     );
   }
 

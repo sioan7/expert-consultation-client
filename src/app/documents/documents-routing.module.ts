@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as fromContainers from './containers';
+import { DocumentsGuard } from '@app/documents/guards';
 
 const routes: Routes = [
   {
     path: '',
     component: fromContainers.DocumentsComponent,
+    canActivate: [
+      DocumentsGuard,
+    ],
   },
   {
     path: ':documentId/breakdown',

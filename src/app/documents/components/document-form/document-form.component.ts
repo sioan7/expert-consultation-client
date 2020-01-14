@@ -1,15 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DocumentType } from '@app/documents/types/enums';
-import { DocumentMetadata } from '@app/documents/models/document-metadata.model';
+import { DocumentMetadata, DocumentType } from '@app/core/models';
 
 @Component({
   selector: 'app-document-form',
@@ -42,7 +33,7 @@ export class DocumentFormComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const filePathChanges = changes['filePath'];
     if (filePathChanges) {
-      this.documentForm.patchValue({ filePath: filePathChanges.currentValue });
+      this.documentForm.patchValue({filePath: filePathChanges.currentValue});
       this.documentForm.controls.filePath.markAsTouched();
     }
   }

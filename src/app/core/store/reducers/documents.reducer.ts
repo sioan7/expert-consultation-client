@@ -1,10 +1,8 @@
-import { DocumentConsolidate, IDocumentConsolidate } from '@app/documents/models/document-consolidate.model';
-import { Error, IPageData, PageData } from '@app/core';
-import * as fromActions from '../actions';
-import { DocumentsActionTypes } from '../actions';
+import { DocumentConsolidate, DocumentMetadata, Error, IDocumentConsolidate, IDocumentMetadata, IPageData, PageData } from '../../models';
+import * as fromDocuments from '../actions/documents.action';
 
 export interface DocumentsState {
-  entities: { [id: string]: IDocumentConsolidate };
+  entities: { [id: string]: IDocumentMetadata };
   loaded: boolean;
   loading: boolean;
   pageData: IPageData;
@@ -19,18 +17,18 @@ export const initialState: DocumentsState = {
   error: null
 };
 
-export function reducer(state = initialState, action: fromActions.DocumentsActions): DocumentsState {
+export function reducer(state = initialState, action: fromDocuments.DocumentsAction): DocumentsState {
 
   switch (action.type) {
-    case DocumentsActionTypes.LoadDocuments:
+    case fromDocuments.DocumentsActionTypes.LoadDocuments:
       return {
         ...state,
         loading: true,
       };
-    case DocumentsActionTypes.LoadDocumentsSuccess: {
+    case fromDocuments.DocumentsActionTypes.LoadDocumentsSuccess: {
       const documentsPage = action.payload;
       const documents = documentsPage.content;
-      const entities = documents.reduce((e: { [id: string]: DocumentConsolidate }, document: DocumentConsolidate) => {
+      const entities = documents.reduce((e: { [id: string]: DocumentMetadata }, document: DocumentMetadata) => {
         return {
           ...e,
           [document.id]: document.toJson(),
@@ -47,7 +45,7 @@ export function reducer(state = initialState, action: fromActions.DocumentsActio
         entities,
       };
     }
-    case DocumentsActionTypes.LoadDocumentsFail:
+    case fromDocuments.DocumentsActionTypes.LoadDocumentsFail:
       return {
         ...state,
         loading: false,
@@ -58,7 +56,6 @@ export function reducer(state = initialState, action: fromActions.DocumentsActio
     }
   }
 }
-
 
 export const getDocumentsEntities = (state: DocumentsState) => state.entities;
 export const getDocumentsLoading = (state: DocumentsState) => state.loading;

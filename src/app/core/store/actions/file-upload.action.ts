@@ -64,7 +64,8 @@ export class UploadCompletedWithResponseAction implements Action {
 export class DeleteRequest implements Action {
   readonly type = FileUploadActionTypes.DELETE_REQUEST;
 
-  constructor(public payload: string) {}
+  constructor(public payload: string) {
+  }
 }
 
 export class DeleteRequestSuccess implements Action {
@@ -74,7 +75,8 @@ export class DeleteRequestSuccess implements Action {
 export class DeleteRequestFail implements Action {
   readonly type = FileUploadActionTypes.DELETE_REQUEST_FAILED;
 
-  constructor(public payload: string) {}
+  constructor(public payload: string) {
+  }
 }
 
 export type FileUploadAction =
@@ -85,6 +87,7 @@ export type FileUploadAction =
     | UploadProgressAction
     | UploadFailureAction
     | UploadCompletedAction
+    | UploadCompletedWithResponseAction
     | DeleteRequest
     | DeleteRequestSuccess
     | DeleteRequestFail;
