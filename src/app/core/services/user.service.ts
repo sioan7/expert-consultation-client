@@ -37,6 +37,10 @@ export class UserService {
       ));
   }
 
+  public saveUsersExcel(usersExcel: string): Observable<IUser[]> {
+    return this.usersApiService.saveExcel(usersExcel);
+  }
+
   private fromResponse(userResponse: IUser): User {
     return new User(userResponse);
   }

@@ -44,7 +44,8 @@
       "subTitle": "Do you want to add an individual member?",
       "subTitle.single": "Add new member.",
       "fromCsv": "Import .csv file",
-      "fromExcel": "Copy/paste from excel document"
+      "fromExcel": "Copy/paste from excel document",
+      "excel": "Paste in the box below"
     },
     "header": {
       "button": {

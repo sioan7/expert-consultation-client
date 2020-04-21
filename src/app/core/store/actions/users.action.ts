@@ -8,6 +8,9 @@ export enum UserActionTypes {
   SaveUser = '[Users] Save User',
   SaveUserSuccess = '[Users] Save User Success',
   SaveUserFail = '[Users] Save User Fail',
+  SaveUsersExcel = '[Users] Save Users Excel',
+  SaveUserExcelSuccess = '[Users] Save Users Excel Success',
+  SaveUserExcelFail = '[Users] Save Users Excel Fail'
 }
 
 export class LoadUsers implements Action {
@@ -52,9 +55,30 @@ export class SaveUserFail implements Action {
   }
 }
 
+export class SaveUsersExcel implements Action {
+  readonly type: string = UserActionTypes.SaveUsersExcel;
+
+  constructor(public payload: string) {}
+}
+
+export class SaveUserExcelSuccess implements Action {
+  readonly type: string = UserActionTypes.SaveUserExcelSuccess;
+
+  constructor(public payload: User[]) {}
+}
+
+export class SaveUserExcelFail implements Action {
+  readonly type: string = UserActionTypes.SaveUserExcelFail;
+
+  constructor(public payload: Error) {}
+}
+
 export type UsersAction = LoadUsers
   | LoadUsersSuccess
   | LoadUsersFail
   | SaveUser
   | SaveUserSuccess
-  | SaveUserFail;
+  | SaveUserFail
+  | SaveUsersExcel
+  | SaveUserExcelSuccess
+  | SaveUserExcelFail;

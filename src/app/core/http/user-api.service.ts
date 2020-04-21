@@ -35,4 +35,10 @@ export class UserApiService {
       );
   }
 
+  public saveExcel(usersExcel: string) {
+    return this.http.post<IUser[]>(`${environment.api_url}/users/extract-from-copy`, [usersExcel], {})
+        .pipe(
+            catchError(aError => observableThrowError(aError))
+        );
+  }
 }

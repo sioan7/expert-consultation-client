@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as usersActions from '../actions/users.action';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap, take } from 'rxjs/operators';
 import { UserService } from '../../services';
 import { of } from 'rxjs';
 import { Error, Page, User } from '../../models';
@@ -38,6 +38,26 @@ export class UsersEffects {
   successfulSave$ = this.actions$.pipe(
     ofType(usersActions.UserActionTypes.SaveUserSuccess),
     tap(() => this.router.navigate(['/users'])),
+  );
+
+  @Effect()
+  saveUsersExcel = this.actions$.pipe(
+      ofType(usersActions.UserActionTypes.SaveUsersExcel),
+      map((action: usersActions.SaveUsersExcel) => action.payload),
+      switchMap((usersExcel: string) => {
+        return this.usersService.saveUsersExcel(usersExcel)
+            .pipe(
+              map((savedUser: User[]) => new usersActions.SaveUserExcelSuccess(savedUser)),
+              catchError(error => of(new usersActions.SaveUserExcelFail(error)))
+        );
+      })
+  );
+
+  @Effect({ dispatch: false })
+  successfulExcelSave = this.actions$.pipe(
+      ofType(usersActions.UserActionTypes.SaveUserExcelSuccess),
+      take(1),
+      tap(() => this.router.navigate(['/users']))
   );
 
   constructor(private actions$: Actions,

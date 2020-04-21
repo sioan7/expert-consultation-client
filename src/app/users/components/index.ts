@@ -8,6 +8,7 @@ import { ImportedUsersTableRowComponent } from '@app/users/components/imported-u
 import { UsersViewComponent } from '@app/users/components/users-view/users-view.component';
 import { UsersCardsComponent } from '@app/users/components/users-view/users-cards/users-cards.component';
 import { UserCardComponent } from '@app/users/components/users-view/users-cards/user-card/user-card.component';
+import { AddExcelUsersComponent } from '@app/users/components/add-excel-users/add-excel-users.component';
 
 
 export const components: any[] = [
@@ -20,4 +21,5 @@ export const components: any[] = [
   UsersViewComponent,
   UsersCardsComponent,
   UserCardComponent,
+  AddExcelUsersComponent,
 ];

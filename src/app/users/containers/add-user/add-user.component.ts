@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CoreState } from '@app/core/store';
+import { Store } from '@ngrx/store';
+import * as fromStore from '@app/core/store';
 
 @Component({
   selector: 'app-add-user',
@@ -7,7 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent {
-  constructor(private router: Router) {
+  private csv: boolean;
+  private excel: boolean;
+  private optionSelected: boolean;
+
+  constructor(private router: Router,
+              private store: Store<CoreState>) {
   }
 
   public redirectToAddSingleUser() {
@@ -18,4 +26,21 @@ export class AddUserComponent {
     this.router.navigate(['/users/add/csv']);
   }
 
+  private userOptionSelected() {
+    this.optionSelected = true;
+  }
+
+  private selectOption1() {
+    this.csv = true;
+    this.excel = false;
+  }
+
+  private selectOption2() {
+    this.csv = false;
+    this.excel = true;
+  }
+
+  private save(usersExcel: string) {
+    this.store.dispatch(new fromStore.SaveUsersExcel(usersExcel));
+  }
 }
