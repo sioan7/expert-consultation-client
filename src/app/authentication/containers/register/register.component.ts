@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Router, ActivatedRoute } from '@angular/router';
-import {UserRequest} from '@app/core/models';
-import {AuthenticationApiService} from '@app/core/http';
-import {Tools} from '@app/shared/utils/tools';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserRequest } from '@app/core/models';
+import { AuthenticationApiService } from '@app/core/http';
+import { Tools } from '@app/shared/utils/tools';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   aUser: UserRequest;
 
   public signUpForm = new FormGroup({

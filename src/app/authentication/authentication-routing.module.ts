@@ -14,11 +14,11 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    redirectTo: 'sign-up/'
+    redirectTo: 'register/'
   },
   {
-    path: 'sign-up/:email',
-    component: fromContainers.SignUpComponent,
+    path: 'register/:email',
+    component: fromContainers.RegisterComponent,
   },
 ];
 
