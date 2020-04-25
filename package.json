@@ -44,8 +44,7 @@
     "rxjs-compat": "^6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2",
-    "serialize-error": "latest",
-    "jwt-decode": "latest"
+    "serialize-error": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.21",

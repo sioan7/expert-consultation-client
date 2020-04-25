@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import * as jwt_decode from 'jwt-decode';
+import { Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
+  public hasExpired: Subject<boolean> = new Subject();
   private authDataKey = 'authenticationData';
 
   setAuthenticationData(data) {
@@ -19,35 +20,7 @@ export class AuthenticationService {
 
   public isUserLoggedIn() {
     const authData = this.getAuthenticationData();
-    return authData && !this.isTokenExpired(authData['accessToken']);
+    return !!authData;
   }
-
-  isTokenExpired(token?: string): boolean {
-    if (!token) {
-      token = this.getAuthenticationData();
-    }
-    if (!token) {
-      return true;
-    }
-
-    const tokenExpirationDate = this.getTokenExpirationDate(token);
-    if (tokenExpirationDate === undefined) {
-      return false;
-    }
-    return !(tokenExpirationDate.valueOf() > new Date().valueOf());
-  }
-
-  getTokenExpirationDate(token: string): Date {
-    const decoded = jwt_decode(token);
-
-    if (decoded.exp === undefined) {
-      return null;
-    }
-
-    const date = new Date(0);
-    date.setUTCSeconds(decoded.exp);
-    return date;
-  }
-
 
 }

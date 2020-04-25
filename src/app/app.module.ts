@@ -21,6 +21,8 @@ import { JwtInterceptor } from '@app/authentication/jwt.interceptor';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderInterceptor } from '@app/interceptors/header.interceptor';
+import { AuthenticatedHttpInterceptor } from '@app/authentication/authenticated-http.interceptor';
+import { AuthenticationService } from '@app/core';
 
 export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 
@@ -35,6 +37,12 @@ export const httpInterceptorProviders = [
     useClass: JwtInterceptor,
     multi: true,
   },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthenticatedHttpInterceptor,
+    multi: true,
+    deps: [AuthenticationService]
+  }
 ];
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
