@@ -54,7 +54,7 @@ export class SignUpComponent implements OnInit {
     const aSignUp = this.aUser;
     this.authenticationApiService.signup(aSignUp)
       .subscribe({
-        next: signup => this.router.navigate(['authentication/log-in']),
+        next: signup => this.router.navigate(['authentication/login']),
         error: errors => {
           for (const error of errors) {
             this.signUpForm.controls[errorFields[error]].markAsTouched();
@@ -65,7 +65,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['authentication/log-in']);
+    this.router.navigate(['authentication/login']);
   }
 
 }

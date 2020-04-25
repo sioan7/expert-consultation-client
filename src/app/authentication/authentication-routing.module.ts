@@ -9,11 +9,11 @@ import * as fromContainers from './containers';
 
 const routes: Routes = [
   {
-    path: 'log-in',
-    component: fromContainers.LogInComponent,
+    path: 'login',
+    component: fromContainers.LoginComponent,
   },
   {
-    path: 'sign-up',
+    path: 'register',
     redirectTo: 'sign-up/'
   },
   {

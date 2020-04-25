@@ -54,7 +54,7 @@ export class TopBarComponent extends BaseComponent implements OnInit {
   }
 
   login() {
-    this.router.navigate(['authentication/log-in']);
+    this.router.navigate(['authentication/login']);
   }
 
   changeLanguage(lang: string) {
