@@ -8,17 +8,17 @@
       </div>
 
       <mat-menu #profileMenu="matMenu">
-        <button (click)="profile()" mat-menu-item>Profil</button>
-        <button (click)="logout()" mat-menu-item>Deconectare</button>
+        <button (click)="profile()" mat-menu-item>{{ 'header.profile' | translate }}</button>
+        <button (click)="logout()" mat-menu-item>{{ 'header.logout' | translate}}</button>
       </mat-menu>
     </div>
 
     <mat-toolbar fxLayout="row" fxLayoutAlign="end stretch">
-      <button (click)="about()" mat-button routerLinkActive="active">Despre</button>
-      <button (click)="consultation()" mat-button routerLinkActive="active">In consultare</button>
-      <button (click)="archive()" mat-button routerLinkActive="active">Arhiva</button>
-      <button (click)="members()" mat-button routerLinkActive="active">Membri</button>
-      <button (click)="login()" mat-button routerLinkActive="active">Log in</button>
+      <button (click)="about()" mat-button routerLinkActive="active">{{ 'header.about' | translate }}</button>
+      <button (click)="consultation()" mat-button routerLinkActive="active">{{ 'header.consultation' | translate }}</button>
+      <button (click)="archive()" mat-button routerLinkActive="active">{{ 'header.archive' | translate }}</button>
+      <button (click)="members()" mat-button routerLinkActive="active">{{ 'header.members' | translate }}</button>
+      <button (click)="login()" mat-button routerLinkActive="active">{{ 'header.login' | translate }}</button>
       <button [matMenuTriggerFor]="selectLanguage" mat-button>
         <span [ngClass]="getFlagClasses()" class="flag-icon flag-icon-squared"></span>
       </button>

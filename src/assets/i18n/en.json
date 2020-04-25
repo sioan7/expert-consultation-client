@@ -11,7 +11,7 @@
   "login": {
     "label": {
       "Username.or.email": "Username or email",
-      "Password": "Parola"
+      "Password": "Password"
     },
     "Bad.credentials": "The specified username, email or password are not correct.",
     "UsernameOrEmail.not.empty": "Username or email is mandatory",
@@ -24,6 +24,26 @@
   },
   "search": {
     "label": "Search"
+  },
+  "documents": {
+    "add": {
+      "title": "Add a document"
+    },
+    "table": {
+      "type": "documents",
+      "sort": {
+        "year": "Year",
+        "type": "Document type",
+        "initiator": "Initiator",
+        "status": "Status"
+      },
+      "column": {
+        "name": "Document Name",
+        "date": "Publish Date",
+        "type": "Document Type",
+        "initiator": "Initiator"
+      }
+    }
   },
   "users": {
     "table": {
@@ -60,5 +80,44 @@
     "save": {
       "duplicatedEmail": "Email already in use."
     }
+  },
+  "fileUpload": {
+    "label": {
+      "Choose.file": "Choose file",
+      "Uploading": "Uploading...",
+      "Uploaded.successfully": "Uploaded successfully!",
+      "Cancel.upload": "Cancel upload",
+      "Error": "Error"
+    }
+  },
+  "document": {
+    "add": {
+      "title": "Document title",
+      "number": "Document number",
+      "initiator": "Initiator",
+      "type": {
+        "name": "Document type",
+        "OUG": "Emergency Ordinance",
+        "HG": "Government Decision",
+        "LEGE": "Law"
+      },
+      "release": "Release date",
+      "receiving": "Receive date",
+      "file": "Upload file"
+    }
+  },
+  "table": {
+    "sort": {
+      "title": "Sort by"
+    }
+  },
+  "header": {
+    "profile": "Profile",
+    "login": "Log in",
+    "logout": "Log out",
+    "about": "About",
+    "consultation": "Consultation",
+    "archive": "Archive",
+    "members": "Members"
   }
 }
