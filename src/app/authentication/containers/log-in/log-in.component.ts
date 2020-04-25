@@ -5,6 +5,7 @@ import { I18nError } from '@app/core/http/errors/i18n-error';
 import { Tools } from '@app/shared/utils/tools';
 import { AuthenticationApiService } from '@app/core/http';
 import { LoginRequest } from '@app/core/models';
+import { AuthenticationService } from '@app/core';
 
 @Component({
   selector: 'app-log-in',
@@ -23,9 +24,9 @@ export class LogInComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private authenticationApiService: AuthenticationApiService) {
-    // redirect to home if already logged in
-    if (this.authenticationApiService.authenticationDataValue) {
+              private authenticationApiService: AuthenticationApiService,
+              private authService: AuthenticationService) {
+    if (!authService.isUserLoggedIn()) {
       this.router.navigate(['/']);
     }
   }
