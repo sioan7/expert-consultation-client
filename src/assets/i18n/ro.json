@@ -104,6 +104,23 @@
       "release": "Data eliberării",
       "receiving": "Data primirii",
       "file": "Incarcă documentul"
+    },
+    "view": {
+      "name": "Nume document",
+      "initiator": "Inițiator",
+      "date": "Data elaborării",
+      "type": "Tip document",
+      "status": "Status",
+      "download": "Descarcă document",
+      "search": "Caută în document",
+      "section": {
+        "type": {
+          "document": "Document",
+          "chapter": "Capitolul",
+          "section": "Secțiunea",
+          "article": "Art."
+        }
+      }
     }
   },
   "table": {

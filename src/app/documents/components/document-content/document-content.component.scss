@@ -1,0 +1,17 @@
+.paragraph, .alignment, .article p {
+  margin: 0;
+  padding: 0;
+}
+
+.article {
+  padding-bottom: 15px;
+}
+
+.chapter {
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+  b {
+    font-size: 15px;
+  }
+}

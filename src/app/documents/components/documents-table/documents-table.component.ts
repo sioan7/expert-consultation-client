@@ -1,5 +1,5 @@
 import { BaseComponent } from '@app/shared/components/base-component';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DocumentMetadata, PageData } from '@app/core';
 
 @Component({
@@ -10,6 +10,7 @@ import { DocumentMetadata, PageData } from '@app/core';
 export class DocumentsTableComponent extends BaseComponent {
   @Input() documents: DocumentMetadata[];
   @Input() pageData: PageData;
+  @Output() rowClick: EventEmitter<string> = new EventEmitter<string>();
 
   public tableConfig = {
     displayedColumns: [

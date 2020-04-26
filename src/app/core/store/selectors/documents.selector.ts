@@ -1,11 +1,12 @@
 import { createSelector } from '@ngrx/store';
 import * as fromFeature from '../reducers';
 import * as fromDocuments from '../reducers/documents.reducer';
-import { DocumentMetadata, IDocumentMetadata, IPageData, PageData } from '../../models';
+import { DocumentConsolidate, DocumentMetadata, IDocumentConsolidate, IDocumentMetadata, IPageData, PageData } from '../../models';
 
 const getDocumentsState = createSelector(fromFeature.getCoreState, (state: fromFeature.CoreState) => state.documents);
 
 const getDocumentsAsInterfaces = createSelector(getDocumentsState, fromDocuments.getDocumentsEntities);
+const getDocumentConsolidateAsInterface = createSelector(getDocumentsState, fromDocuments.getDocumentEntity);
 
 export const getDocumentsEntities = createSelector(getDocumentsAsInterfaces,
     (documents: { [id: string]: IDocumentMetadata }) => {
@@ -32,3 +33,5 @@ export const getDocuments = createSelector(getDocumentsEntities,
 );
 export const getDocumentsLoaded = createSelector(getDocumentsState, fromDocuments.getDocumentsLoaded);
 export const getDocumentsLoading = createSelector(getDocumentsState, fromDocuments.getDocumentsLoading);
+export const getDocumentConsolidate = createSelector(getDocumentConsolidateAsInterface,
+    (documentConsolidate: IDocumentConsolidate) => new DocumentConsolidate(documentConsolidate));

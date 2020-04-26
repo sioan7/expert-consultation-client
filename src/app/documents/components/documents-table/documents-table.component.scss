@@ -87,3 +87,8 @@
   width: 50%;
   text-align: center;
 }
+
+.document-row:hover {
+  background-color: $legal-consult-grey;
+  cursor: pointer;
+}

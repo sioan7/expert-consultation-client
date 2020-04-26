@@ -5,6 +5,7 @@ export interface IDocumentNode {
   title: string;
   content: string;
   numberOfComments: number;
+  identifier: string;
   documentNodeType: DocumentNodeType;
   children: IDocumentNode[];
 }
@@ -14,6 +15,7 @@ export class DocumentNode {
   title: string;
   content: string;
   numberOfComments: number;
+  identifier: string;
   documentNodeType: DocumentNodeType;
   children: DocumentNode[];
 
@@ -27,6 +29,7 @@ export class DocumentNode {
     this.content = json.content;
     this.documentNodeType = json.documentNodeType;
     this.numberOfComments = json.numberOfComments;
+    this.identifier = json.identifier;
     this.children = json.children.map(value => new DocumentNode(value));
   }
 
@@ -35,6 +38,7 @@ export class DocumentNode {
       id: this.id,
       title: this.title,
       content: this.content,
+      identifier: this.identifier,
       documentNodeType: this.documentNodeType,
       numberOfComments: this.numberOfComments,
       children: this.children.map(value => value.toJson())

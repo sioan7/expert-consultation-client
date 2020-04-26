@@ -24,6 +24,18 @@ export class DocumentsEffect {
       ));
 
   @Effect()
+  loadDocumentConsolidate$ = this.actions$.pipe(
+      ofType(documentsActions.DocumentsActionTypes.LoadDocumentConsolidate),
+      map((action: documentsActions.LoadDocumentConsolidate) => action.payload),
+      concatMap((id: string) => this.documentsService.get(id)
+          .pipe(
+              map((document: DocumentConsolidate) => new documentsActions.LoadDocumentConsolidateSuccess(document)),
+              catchError(error => of(new documentsActions.LoadDocumentConsolidateFail(error))),
+          )
+      )
+  );
+
+  @Effect()
   saveDocument$ = this.actions$.pipe(
       ofType(documentsActions.DocumentsActionTypes.SaveDocument),
       map((action: documentsActions.SaveDocument) => action.payload),
@@ -37,9 +49,9 @@ export class DocumentsEffect {
 
   @Effect()
   saveDocumentSuccess$ = this.actions$.pipe(
-    ofType(documentsActions.DocumentsActionTypes.SaveDocumentSuccess),
-    take(1),
-    tap(() => this.router.navigate(['/documents'])),
+      ofType(documentsActions.DocumentsActionTypes.SaveDocumentSuccess),
+      take(1),
+      tap(() => this.router.navigate(['/documents'])),
   );
 
   constructor(private store$: Store<CoreState>,
