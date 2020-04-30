@@ -19,7 +19,6 @@ export class AuthenticatedHttpInterceptor implements HttpInterceptor {
                   this.authService.hasExpired.next(true);
                 }
               }
-              console.log(err);
             }));
   }
 }
