@@ -9,16 +9,16 @@ import * as fromContainers from './containers';
 
 const routes: Routes = [
   {
-    path: 'log-in',
-    component: fromContainers.LogInComponent,
+    path: 'login',
+    component: fromContainers.LoginComponent,
   },
   {
-    path: 'sign-up',
-    redirectTo: 'sign-up/'
+    path: 'register',
+    redirectTo: 'register/'
   },
   {
-    path: 'sign-up/:email',
-    component: fromContainers.SignUpComponent,
+    path: 'register/:email',
+    component: fromContainers.RegisterComponent,
   },
 ];
 

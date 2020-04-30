@@ -18,7 +18,7 @@
       <button (click)="consultation()" mat-button routerLinkActive="active">{{ 'header.consultation' | translate }}</button>
       <button (click)="archive()" mat-button routerLinkActive="active">{{ 'header.archive' | translate }}</button>
       <button (click)="members()" mat-button routerLinkActive="active">{{ 'header.members' | translate }}</button>
-      <button (click)="login()" mat-button routerLinkActive="active">{{ 'header.login' | translate }}</button>
+      <button *ngIf="!isLoggedIn()" (click)="login()" mat-button routerLinkActive="active">{{ 'header.login' | translate }}</button>
       <button [matMenuTriggerFor]="selectLanguage" mat-button>
         <span [ngClass]="getFlagClasses()" class="flag-icon flag-icon-squared"></span>
       </button>

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '@app/shared/components/base-component';
 import { takeUntil } from 'rxjs/operators';
-import { AuthenticationApiService } from '@app/core';
+import { AuthenticationApiService, AuthenticationService } from '@app/core';
 
 @Component({
   selector: 'app-top-bar',
@@ -17,7 +17,8 @@ export class TopBarComponent extends BaseComponent implements OnInit {
 
   constructor(private router: Router,
               private translate: TranslateService,
-              private authenticationApiService: AuthenticationApiService) {
+              private authenticationApiService: AuthenticationApiService,
+              private authService: AuthenticationService) {
     super();
     translate.onLangChange
         .pipe(takeUntil(this.destroyed$))
@@ -30,9 +31,6 @@ export class TopBarComponent extends BaseComponent implements OnInit {
   logout() {
     this.authenticationApiService.logout();
     this.router.navigate(['/']);
-  }
-
-  applyFilter() {
   }
 
   profile() {
@@ -56,7 +54,7 @@ export class TopBarComponent extends BaseComponent implements OnInit {
   }
 
   login() {
-    this.router.navigate(['authentication/log-in']);
+    this.router.navigate(['authentication/login']);
   }
 
   changeLanguage(lang: string) {
@@ -68,5 +66,9 @@ export class TopBarComponent extends BaseComponent implements OnInit {
       'flag-icon-ro': this.currentLanguage === 'ro',
       'flag-icon-gb': this.currentLanguage === 'en',
     };
+  }
+
+  isLoggedIn() {
+    return this.authService.isUserLoggedIn();
   }
 }

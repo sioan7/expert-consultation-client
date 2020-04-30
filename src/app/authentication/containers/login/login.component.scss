@@ -1,7 +1,7 @@
 @import "mixins.scss";
 @import "variables.scss";
 
-#sign-up {
+#login {
   height: calc(100% - #{$legal-consult-header-height});
 
   form {

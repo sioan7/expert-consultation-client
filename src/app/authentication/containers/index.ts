@@ -1,10 +1,10 @@
-import { LogInComponent } from './log-in/log-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 export const components: any[] = [
-  LogInComponent,
-  SignUpComponent
+  LoginComponent,
+  RegisterComponent
 ];
 
-export * from './log-in/log-in.component';
-export * from './sign-up/sign-up.component';
+export * from './login/login.component';
+export * from './register/register.component';

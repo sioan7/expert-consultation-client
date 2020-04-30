@@ -5,13 +5,14 @@ import { I18nError } from '@app/core/http/errors/i18n-error';
 import { Tools } from '@app/shared/utils/tools';
 import { AuthenticationApiService } from '@app/core/http';
 import { LoginRequest } from '@app/core/models';
+import { AuthenticationService } from '@app/core';
 
 @Component({
-  selector: 'app-log-in',
-  templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LogInComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginRequest: LoginRequest;
   returnUrl: string;
 
@@ -23,9 +24,10 @@ export class LogInComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private authenticationApiService: AuthenticationApiService) {
+              private authenticationApiService: AuthenticationApiService,
+              private authService: AuthenticationService) {
     // redirect to home if already logged in
-    if (this.authenticationApiService.authenticationDataValue) {
+    if (authService.isUserLoggedIn()) {
       this.router.navigate(['/']);
     }
   }
@@ -72,7 +74,7 @@ export class LogInComponent implements OnInit {
   }
 
   signUp() {
-    this.router.navigate(['authentication/sign-up']);
+    this.router.navigate(['authentication/register']);
   }
 
 }
