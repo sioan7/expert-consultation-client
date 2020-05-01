@@ -19,7 +19,7 @@ export class DocumentsApiService {
   }
 
   public get(documentId: string): Observable<IDocumentConsolidate> {
-    return this.http.get<IDocumentConsolidate>(`${this.url}/${documentId}`);
+    return this.http.get<IDocumentConsolidate>(`${this.url}/${documentId}/consolidated`);
   }
 
   public post(documentMetadata: IDocumentMetadata) {

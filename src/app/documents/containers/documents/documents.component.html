@@ -8,6 +8,7 @@
     <app-add-button (buttonClick)="onAddButtonClick()" [text]="'documents.add.title'"></app-add-button>
   </div>
   <app-documents-table [documents]="documents$ | async"
-                       [pageData]="documentsPageData$ | async">
+                       [pageData]="documentsPageData$ | async"
+                       (rowClick)="onRowClick($event)">
   </app-documents-table>
 </section>

@@ -7,7 +7,10 @@ export enum DocumentsActionTypes {
   LoadDocumentsFail = '[Documents] Load Documents Fail',
   SaveDocument = '[Documents] Save Documents',
   SaveDocumentSuccess = '[Documents] Save Documents Success',
-  SaveDocumentFail = '[Documents] Save Documents Fail'
+  SaveDocumentFail = '[Documents] Save Documents Fail',
+  LoadDocumentConsolidate = '[Documents] Load Document Consolidate',
+  LoadDocumentConsolidateSuccess = '[Documents] Load Document Consolidate Success',
+  LoadDocumentConsolidateFail = '[Documents] Load Document Consolidate Fail'
 }
 
 export class LoadDocuments implements Action {
@@ -28,28 +31,55 @@ export class LoadDocumentsFail implements Action {
   }
 }
 
+export class LoadDocumentConsolidate implements Action {
+  readonly type = DocumentsActionTypes.LoadDocumentConsolidate;
+
+  constructor(public payload: string) {
+  }
+}
+
+export class LoadDocumentConsolidateSuccess implements Action {
+  readonly type = DocumentsActionTypes.LoadDocumentConsolidateSuccess;
+
+  constructor(public payload: DocumentConsolidate) {
+  }
+}
+
+export class LoadDocumentConsolidateFail implements Action {
+  readonly type = DocumentsActionTypes.LoadDocumentConsolidateFail;
+
+  constructor(public payload: any) {
+  }
+}
+
 export class SaveDocument implements Action {
   readonly type = DocumentsActionTypes.SaveDocument;
 
-  constructor(public payload: IDocumentMetadata) {}
+  constructor(public payload: IDocumentMetadata) {
+  }
 }
 
 export class SaveDocumentSuccess implements Action {
   readonly type = DocumentsActionTypes.SaveDocumentSuccess;
 
-  constructor(public payload: IDocumentMetadata) {}
+  constructor(public payload: IDocumentMetadata) {
+  }
 }
 
 export class SaveDocumentFail implements Action {
   readonly type = DocumentsActionTypes.SaveDocumentFail;
 
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+  }
 }
 
 export type DocumentsAction =
     | LoadDocuments
     | LoadDocumentsFail
     | LoadDocumentsSuccess
+    | LoadDocumentConsolidate
+    | LoadDocumentConsolidateFail
+    | LoadDocumentConsolidateSuccess
     | SaveDocument
     | SaveDocumentSuccess
     | SaveDocumentFail;

@@ -32,4 +32,9 @@ export class DocumentsComponent {
   public onAddButtonClick() {
     this.router.navigate(['/documents/add']);
   }
+
+  public onRowClick(id: string) {
+    this.router.navigate(['documents', id, 'breakdown']);
+  }
+
 }
