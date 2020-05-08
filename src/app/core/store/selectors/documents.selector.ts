@@ -35,3 +35,5 @@ export const getDocumentsLoaded = createSelector(getDocumentsState, fromDocument
 export const getDocumentsLoading = createSelector(getDocumentsState, fromDocuments.getDocumentsLoading);
 export const getDocumentConsolidate = createSelector(getDocumentConsolidateAsInterface,
     (documentConsolidate: IDocumentConsolidate) => new DocumentConsolidate(documentConsolidate));
+export const getDocumentMetadata = createSelector(getDocumentConsolidate,
+    (documentConsolidate: DocumentConsolidate) => documentConsolidate.documentMetadata);

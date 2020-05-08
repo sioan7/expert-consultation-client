@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDocumentConsolidate, IDocumentMetadata, Page } from '../models/';
+import { IDocumentConsolidate, IDocumentMetadata, IUser, Page } from '../models/';
 import { environment } from '@env/environment';
 
 @Injectable()
@@ -22,7 +22,15 @@ export class DocumentsApiService {
     return this.http.get<IDocumentConsolidate>(`${this.url}/${documentId}/consolidated`);
   }
 
-  public post(documentMetadata: IDocumentMetadata) {
-    return this.http.post(`${this.url}`, documentMetadata);
+  public post(documentMetadata: IDocumentMetadata): Observable<string> {
+    return this.http.post<string>(`${this.url}`, documentMetadata);
+  }
+
+  public getAssignedUsers(documentId: string): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.url}/${documentId}/users`);
+  }
+
+  public saveAssignedUsers(documentId: string, userIds: string[]) {
+    return this.http.post(`${this.url}/${documentId}/users`, {userIds});
   }
 }

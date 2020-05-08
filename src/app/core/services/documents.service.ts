@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DocumentsApiService } from '../http';
-import { DocumentConsolidate, DocumentMetadata, IDocumentConsolidate, IDocumentMetadata, Page } from '../models';
+import { DocumentConsolidate, DocumentMetadata, IDocumentConsolidate, IDocumentMetadata, IUser, Page, User } from '../models';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -20,10 +20,18 @@ export class DocumentsService {
         .pipe(map((iDocumentConsolidate: IDocumentConsolidate) => new DocumentConsolidate(iDocumentConsolidate)));
   }
 
-  public save(documentMetadata: DocumentMetadata): Observable<DocumentMetadata> {
+  public save(documentMetadata: DocumentMetadata): Observable<string> {
     return this.documentsApiService
-        .post(documentMetadata.toJson())
-        .pipe(map((iDocument: IDocumentMetadata) => new DocumentMetadata(iDocument)));
+        .post(documentMetadata.toJson());
+  }
+
+  public getAssignedUsers(id: string): Observable<User[]> {
+    return this.documentsApiService.getAssignedUsers(id)
+        .pipe(map((iUsers: IUser[]) => iUsers.map(iUser => new User(iUser))));
+  }
+
+  public saveAssignedUsers(id: string, assignedUsersIds: string[]) {
+    this.documentsApiService.saveAssignedUsers(id, assignedUsersIds).subscribe();
   }
 
   private mapPage(userPage: Page<IDocumentMetadata>): Page<DocumentMetadata> {

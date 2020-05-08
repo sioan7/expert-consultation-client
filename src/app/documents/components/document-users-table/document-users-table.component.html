@@ -1,0 +1,50 @@
+<div class="users-table-wrapper">
+  <div class="search-term-wrapper">
+    <input #searchTerm class="search-term mat-elevation-z2" placeholder="{{'document.users.table.search' | translate}}"
+           type="text">
+  </div>
+  <div class="mat-elevation-z8 table-wrapper">
+    <mat-table #table [dataSource]="availableUsers" fxFlex>
+
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef>{{'document.users.table.firstName' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef>{{'document.users.table.lastName' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="organisation">
+        <mat-header-cell *matHeaderCellDef>{{'document.users.table.organisation' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{ user.organisation }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="assign">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let user" class="action-btn-cell">
+          <div class="users-table-action-btn-wrapper">
+            <span (click)="userUnassigned.emit(user)" *ngIf="isAssigned(user.id)">
+              {{'document.users.table.unassign' | translate}}
+            </span>
+            <span (click)="userAssigned.emit(user)" *ngIf="!isAssigned(user.id)">
+              {{'document.users.table.assign' | translate}}
+            </span>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="tableConfig.displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: tableConfig.displayedColumns;"></mat-row>
+    </mat-table>
+    <div class="table-footer">
+      <mat-paginator #paginator
+                     [hidePageSize]="true"
+                     [length]="pageData.totalElements"
+                     [pageIndex]="pageData.number"
+                     [pageSize]="pageData.size"
+                     [showFirstLastButtons]="true"></mat-paginator>
+    </div>
+  </div>
+</div>

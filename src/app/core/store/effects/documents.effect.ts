@@ -41,17 +41,18 @@ export class DocumentsEffect {
       map((action: documentsActions.SaveDocument) => action.payload),
       concatMap((document: DocumentMetadata) => {
         return this.documentsService.save(document).pipe(
-            map((savedDocument: DocumentMetadata) => new documentsActions.SaveDocumentSuccess(savedDocument)),
+            map((id: string) => new documentsActions.SaveDocumentSuccess(id)),
             catchError(error => of(new documentsActions.SaveDocumentFail(this.mapError(error))))
         );
       })
   );
 
-  @Effect()
+  @Effect({dispatch: false})
   saveDocumentSuccess$ = this.actions$.pipe(
       ofType(documentsActions.DocumentsActionTypes.SaveDocumentSuccess),
+      map((action: documentsActions.SaveDocumentSuccess) => action.payload),
       take(1),
-      tap(() => this.router.navigate(['/documents'])),
+      tap((id: string) => this.router.navigate(['documents', id, 'users'])),
   );
 
   constructor(private store$: Store<CoreState>,

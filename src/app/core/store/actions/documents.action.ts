@@ -62,7 +62,7 @@ export class SaveDocument implements Action {
 export class SaveDocumentSuccess implements Action {
   readonly type = DocumentsActionTypes.SaveDocumentSuccess;
 
-  constructor(public payload: IDocumentMetadata) {
+  constructor(public payload: string) {
   }
 }
 

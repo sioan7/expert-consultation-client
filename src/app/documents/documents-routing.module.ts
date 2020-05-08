@@ -15,7 +15,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: ':documentId/breakdown',
+    path: ':id/breakdown',
     component: fromContainers.DocumentBreakdownComponent,
     canActivate: [
       DocumentBreakdownGuard,
@@ -24,6 +24,13 @@ const routes: Routes = [
   {
     path: 'add',
     component: fromContainers.AddDocumentComponent,
+  },
+  {
+    path: ':id/users',
+    component: fromContainers.DocumentUsersComponent,
+    canActivate: [
+      DocumentBreakdownGuard,
+    ]
   }
 ];
 

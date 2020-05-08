@@ -121,6 +121,24 @@
           "article": "Art."
         }
       }
+    },
+    "metadata": {
+      "initiator": "Inițiator",
+      "dateOfDevelopment": "Data elaborarii",
+      "type": "Tip document",
+      "status": "Status"
+    },
+    "users": {
+      "table": {
+        "firstName": "Prenume",
+        "lastName": "Name",
+        "organisation": "Organizație",
+        "search": "Caută un membru după nume, specializare sau organizație",
+        "assign": "Asignează",
+        "unassign": "Revocă"
+      },
+      "view": "Vezi document",
+      "save": "Salvează"
     }
   },
   "table": {

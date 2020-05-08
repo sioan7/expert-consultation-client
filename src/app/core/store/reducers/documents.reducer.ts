@@ -66,7 +66,7 @@ export function reducer(state = initialState, action: fromDocuments.DocumentsAct
         ...state,
         loading: false,
         loaded: true,
-        entity: action.payload,
+        entity: action.payload.toJson(),
         error: null
       };
     case fromDocuments.DocumentsActionTypes.LoadDocumentConsolidateFail:
