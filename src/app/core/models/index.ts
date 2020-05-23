@@ -10,3 +10,4 @@ export * from './document-metadata.model';
 export * from './document-node.model';
 export * from './document-node-type.enum';
 export * from './document-type.enum';
+export * from './comment.model';

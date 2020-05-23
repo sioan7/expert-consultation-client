@@ -1,0 +1,30 @@
+.node-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.comment-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.blue-link {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.in-focus {
+  background: #eeeeee;
+}
+
+.comments-list {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  align-self: flex-start;
+}
