@@ -42,8 +42,8 @@
                class="blue-link">{{'button.add-comment' | translate}}
             </a>
           </div>
-          <app-node-comment *ngIf="commentsEnabled(documentNode.id)"
-                            [nodeId]="documentNode.id"></app-node-comment>
+          <app-node-comments *ngIf="commentsEnabled(documentNode.id)"
+                             [nodeId]="documentNode.id"></app-node-comments>
         </div>
         <app-document-content [documentNodes]="documentNode.children"
                               [addCommentModeForNode]="addCommentModeForNode"></app-document-content>

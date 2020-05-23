@@ -6,14 +6,13 @@ import { Observable } from 'rxjs';
 import { Comment } from '@app/core';
 
 @Component({
-  selector: 'app-node-comment',
-  templateUrl: './node-comment.component.html',
-  styleUrls: ['./node-comment.component.scss']
+  selector: 'app-node-comments',
+  templateUrl: './node-comments.component.html',
+  styleUrls: ['./node-comments.component.scss']
 })
-export class NodeCommentComponent implements OnInit {
+export class NodeCommentsComponent implements OnInit {
 
   @Input() public nodeId: string;
-  addCommentMode = false;
   public comments$: Observable<Comment[]>;
 
   constructor(private store: Store<CoreState>) {

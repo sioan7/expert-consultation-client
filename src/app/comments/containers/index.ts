@@ -1,7 +1,7 @@
-import { NodeCommentComponent } from '@app/comments/containers/node-comment/node-comment.component';
+import { NodeCommentsComponent } from '@app/comments/containers/node-comment/node-comments.component';
 
 export const components: any[] = [
-  NodeCommentComponent,
+  NodeCommentsComponent,
 ];
 
-export * from './node-comment/node-comment.component';
+export * from './node-comment/node-comments.component';
