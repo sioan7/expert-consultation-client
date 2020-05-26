@@ -111,6 +111,12 @@
       "release": "Release date",
       "receiving": "Receive date",
       "file": "Upload file"
+    },
+    "pdf": {
+      "already_exists": "This PDF document has already been uploaded.",
+      "upload": {
+        "failed": "Failed to upload the PDF file."
+      }
     }
   },
   "table": {

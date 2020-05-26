@@ -146,6 +146,12 @@
       },
       "view": "Vezi document",
       "save": "Salvează"
+    },
+    "pdf": {
+      "already_exists": "Acest fișier PDF a fost încărcat deja.",
+      "upload": {
+        "failed": "Încărcarea fișierului PDF a eșuat."
+      }
     }
   },
   "table": {
