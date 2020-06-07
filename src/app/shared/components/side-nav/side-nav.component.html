@@ -1,13 +1,16 @@
-<nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white sidenav-margin"
+<nav (mouseout)="onMouseLeaveSidenav()"
+     (mouseover)="onMouseEnterSidenav()"
+     class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white sidenav-margin"
      id="sidenav-main">
-  <div class="scroll-wrapper scrollbar-inner">
-    <div class="scrollbar-inner scroll-content scroll-scrollx_visible">
+  <perfect-scrollbar>
+    <div class="scrollbar-inner">
       <div class="sidenav-header d-flex align-items-center">
         <a class="navbar-brand" routerLink="/">
           <img alt="..." class="navbar-brand-img" src="assets/img/logo.png">
         </a>
         <div class="ml-auto">
-          <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
+          <div (click)="minimizeSidebar()" class="sidenav-toggler d-none d-xl-block"
+               data-action="sidenav-unpin" data-target="#sidenav-main">
             <div class="sidenav-toggler-inner">
               <i class="sidenav-toggler-line"></i>
               <i class="sidenav-toggler-line"></i>
@@ -59,19 +62,5 @@
         </div>
       </div>
     </div>
-    <div class="scroll-element scroll-x">
-      <div class="scroll-element_outer">
-        <div class="scroll-element_size"></div>
-        <div class="scroll-element_track"></div>
-        <div class="scroll-bar" style="width: 0px; left: 0px;"></div>
-      </div>
-    </div>
-    <div class="scroll-element scroll-y scroll-scrollx_visible">
-      <div class="scroll-element_outer">
-        <div class="scroll-element_size"></div>
-        <div class="scroll-element_track"></div>
-        <div class="scroll-bar" style="height: 0px; top: 0px;"></div>
-      </div>
-    </div>
-  </div>
+  </perfect-scrollbar>
 </nav>

@@ -5,10 +5,9 @@
 
 // layout
 html, body {
-  height : 100%;
+  height: 100%;
 }
 
-.notification-snackbar {
-  color: white;
-  background: map-get($mat-red, 300);
+.pointer {
+  cursor: pointer;
 }

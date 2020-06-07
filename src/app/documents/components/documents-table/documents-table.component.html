@@ -11,7 +11,7 @@
   <tbody class="list">
   <tr *ngFor="let document of documents">
     <td><i class="fa fa-angle-right"></i></td>
-    <td (click)="onRowClick(document.id)">{{ document.documentTitle }}</td>
+    <td (click)="onRowClick(document.id)" class="pointer">{{ document.documentTitle }}</td>
     <td (click)="onRowClick(document.id)">{{ document.dateOfDevelopment | date }}</td>
     <td (click)="onRowClick(document.id)">{{ document.documentType }}</td>
     <td (click)="onRowClick(document.id)">{{ document.documentInitializer }}</td>

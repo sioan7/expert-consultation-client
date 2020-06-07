@@ -11,6 +11,7 @@ import * as fromComponents from './components';
 import * as fromContainers from './containers';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import * as fromGuards from './guards';
 
 const modules = [
@@ -22,6 +23,7 @@ const modules = [
   ReactiveFormsModule,
   RouterModule,
   TranslateModule,
+  PerfectScrollbarModule,
 ];
 
 @NgModule({
