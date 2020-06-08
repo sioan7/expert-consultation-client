@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { PageData } from '@app/core';
+import { PageData, PageRequest } from '@app/core';
 
 @Component({
   selector: 'app-pagination',
@@ -8,7 +8,7 @@ import { PageData } from '@app/core';
 })
 export class PaginationComponent implements OnChanges {
   @Input() pageData: PageData;
-  @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() pageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 
   pageNumberArray: number[];
   currentPage: number;
@@ -22,6 +22,6 @@ export class PaginationComponent implements OnChanges {
 
   selectPage(page: number) {
     this.currentPage = page;
-    this.pageChange.emit(this.currentPage);
+    this.pageChange.emit(new PageRequest(page - 1));
   }
 }

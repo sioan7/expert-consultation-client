@@ -8,6 +8,7 @@
     </app-documents-table>
   </div>
   <div class="card-footer">
-    <app-pagination [pageData]="documentsPageData$ | async"></app-pagination>
+    <app-pagination [pageData]="documentsPageData$ | async"
+                    (pageChange)="onPageChange($event)"></app-pagination>
   </div>
 </div>

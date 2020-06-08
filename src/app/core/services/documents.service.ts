@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { DocumentsApiService } from '../http';
 import { DocumentConsolidate, DocumentMetadata, IDocumentConsolidate, IDocumentMetadata, IUser, Page, User } from '../models';
 import { map } from 'rxjs/operators';
+import { PageRequest } from '@app/core/models/page-request.model';
 
 @Injectable()
 export class DocumentsService {
@@ -10,8 +11,8 @@ export class DocumentsService {
   constructor(private documentsApiService: DocumentsApiService) {
   }
 
-  public list(): Observable<Page<DocumentMetadata>> {
-    return this.documentsApiService.list()
+  public list(pageRequest: PageRequest): Observable<Page<DocumentMetadata>> {
+    return this.documentsApiService.list(pageRequest)
         .pipe(map(value => this.mapPage(value)));
   }
 

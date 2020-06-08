@@ -11,8 +11,4 @@ export class DocumentsTableComponent extends BaseComponent {
   @Input() documents: DocumentMetadata[];
   @Input() pageData: PageData;
   @Output() rowClick: EventEmitter<string> = new EventEmitter<string>();
-
-  onRowClick(documentId: string) {
-    this.rowClick.emit(documentId);
-  }
 }

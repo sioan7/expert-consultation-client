@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { DocumentConsolidate, DocumentMetadata, IDocumentMetadata, Page } from '../../models';
+import { DocumentConsolidate, DocumentMetadata, IDocumentMetadata, Page, PageRequest } from '../../models';
 
 export enum DocumentsActionTypes {
   LoadDocuments = '[Documents] Load Documents',
@@ -15,6 +15,9 @@ export enum DocumentsActionTypes {
 
 export class LoadDocuments implements Action {
   readonly type = DocumentsActionTypes.LoadDocuments;
+
+  constructor(public payload: PageRequest) {
+  }
 }
 
 export class LoadDocumentsSuccess implements Action {
