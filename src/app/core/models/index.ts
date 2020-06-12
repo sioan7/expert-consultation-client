@@ -12,3 +12,4 @@ export * from './document-node-type.enum';
 export * from './document-type.enum';
 export * from './comment.model';
 export * from './page-request.model';
+export * from './invitation.model';
