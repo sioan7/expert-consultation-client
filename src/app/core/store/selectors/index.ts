@@ -3,3 +3,4 @@ export * from './users.selector';
 export * from './documents.selector';
 export * from './import-users.selector';
 export * from './comments.selector';
+export * from './replies.selector';

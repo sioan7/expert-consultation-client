@@ -2,7 +2,7 @@ import { IComment } from '@app/core/models/comment.model';
 import * as fromComments from '../actions/comments.action';
 import { Error, IPageData, PageData } from '../../models';
 
-interface CommentsEntry {
+export interface CommentsEntry {
   entities: IComment[];
   loading: boolean;
   pageData: IPageData;
@@ -13,7 +13,7 @@ export interface CommentsState {
   entities: { [id: string]: CommentsEntry };
 }
 
-export const initialState: CommentsState = {
+const initialState: CommentsState = {
   entities: {}
 };
 

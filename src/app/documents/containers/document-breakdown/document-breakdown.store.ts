@@ -11,8 +11,10 @@ export class DocumentBreakdownStore {
   }
 
   public expand(nodeId: string) {
-    this.nodesExpandState[nodeId] = true;
-    this.expandedNodes.next(nodeId);
+    if (!this.nodesExpandState[nodeId]) {
+      this.nodesExpandState[nodeId] = true;
+      this.expandedNodes.next(nodeId);
+    }
   }
 
   public collapse(nodeId: string) {

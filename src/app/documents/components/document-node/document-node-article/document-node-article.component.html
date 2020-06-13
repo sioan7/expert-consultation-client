@@ -12,10 +12,10 @@
       <span (click)="expandComments()" class="comment-link">{{'button.add-comment' | translate}}</span>
     </div>
     <div>
-      <span (click)="expandComments()" *ngIf="article.numberOfComments != 1" class="comment-link">
+      <span (click)="expandComments()" *ngIf="article.numberOfComments != 1" class="btn-link">
         {{article.numberOfComments}} {{'comments.number.plural' | translate}}
       </span>
-      <span (click)="expandComments()" *ngIf="article.numberOfComments == 1" class="comment-link">
+      <span (click)="expandComments()" *ngIf="article.numberOfComments == 1" class="btn-link">
         {{article.numberOfComments}} {{'comments.number.singular' | translate}}
       </span>
     </div>

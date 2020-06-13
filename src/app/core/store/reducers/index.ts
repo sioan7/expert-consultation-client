@@ -4,6 +4,7 @@ import * as fromDocuments from './documents.reducer';
 import * as fromFileUpload from './file-upload.reducer';
 import * as fromImportUsers from './import-users.reducer';
 import * as fromComments from './comments.reducer';
+import * as fromReplies from './replies.reducer';
 
 export interface State {
   core: CoreState;
@@ -15,6 +16,7 @@ export interface CoreState {
   importUsers: fromImportUsers.ImportUserState;
   documents: fromDocuments.DocumentsState;
   comments: fromComments.CommentsState;
+  replies: fromComments.CommentsState;
 }
 
 export const reducers: ActionReducerMap<CoreState> = {
@@ -22,7 +24,8 @@ export const reducers: ActionReducerMap<CoreState> = {
   documents: fromDocuments.reducer,
   fileUpload: fromFileUpload.reducer,
   importUsers: fromImportUsers.reducer,
-  comments: fromComments.reducer
+  comments: fromComments.reducer,
+  replies: fromReplies.reducer,
 };
 
 export const getCoreState = createFeatureSelector<CoreState>('core');
