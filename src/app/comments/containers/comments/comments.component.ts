@@ -39,7 +39,7 @@ export class CommentsComponent implements OnInit {
 
   onRepliesCollapsed(commentId: string) {
     this.commentsStore.collapse(commentId);
-    document.getElementById(commentId).scrollIntoView({behavior: "smooth"});
+    document.getElementById(commentId).scrollIntoView({behavior: 'smooth'});
   }
 
   expandReplies(commentId: string) {

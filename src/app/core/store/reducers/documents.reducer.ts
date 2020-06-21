@@ -19,6 +19,11 @@ export const initialState: DocumentsState = {
   error: null
 };
 
+const mapDocumentNodeTree = (document: IDocumentNode, mapping: (d) => IDocumentNode): IDocumentNode => ({
+  ...mapping(document),
+  children: document.children.map(x => mapDocumentNodeTree(x, mapping)),
+});
+
 export function reducer(state = initialState, action: fromDocuments.DocumentsAction): DocumentsState {
 
   switch (action.type) {
@@ -109,11 +114,6 @@ export function reducer(state = initialState, action: fromDocuments.DocumentsAct
     }
   }
 }
-
-const mapDocumentNodeTree = (document: IDocumentNode, mapping: (d) => IDocumentNode): IDocumentNode => ({
-    ...mapping(document),
-    children: document.children.map(x => mapDocumentNodeTree(x, mapping)),
-});
 
 export const getDocumentsEntities = (state: DocumentsState) => state.entities;
 export const getDocumentsLoading = (state: DocumentsState) => state.loading;
