@@ -17,6 +17,7 @@ export enum DocumentsActionTypes {
   GetDocumentAssignedUsers = '[Documents] Get document assigned users',
   GetDocumentAssignedUsersSuccess = '[Documents] Get document assigned users success',
   GetDocumentAssignedUsersFail = '[Documents] Get document assigned users fail',
+  IncrementDocumentNodeCommentCount = '[Documents] Increment document node comment count',
 }
 
 export class LoadDocuments implements Action {
@@ -121,6 +122,13 @@ export class GetDocumentAssignedUsersFail implements Action {
   }
 }
 
+export class IncrementDocumentNodeCommentCount implements Action {
+  readonly type = DocumentsActionTypes.IncrementDocumentNodeCommentCount;
+
+  constructor(public nodeId: string) {
+  }
+}
+
 export type DocumentsAction =
     | LoadDocuments
     | LoadDocumentsFail
@@ -136,4 +144,5 @@ export type DocumentsAction =
     | SaveDocumentAssignedUsersFail
     | GetDocumentAssignedUsers
     | GetDocumentAssignedUsersSuccess
-    | GetDocumentAssignedUsersFail;
+    | GetDocumentAssignedUsersFail
+    | IncrementDocumentNodeCommentCount;

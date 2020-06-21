@@ -3,7 +3,16 @@ import { Store } from '@ngrx/store';
 import { CoreState } from '@app/core/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { CommentsService } from '../../services';
-import * as commentsActions from '../actions';
+import {
+  CommentsActionTypes,
+  LoadComments,
+  LoadCommentsSuccess,
+  LoadCommentsFail,
+  AddComment,
+  AddCommentFail,
+  AddCommentSuccess
+} from '../actions/comments.action';
+import { IncrementDocumentNodeCommentCount } from '../actions/documents.action';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -12,20 +21,26 @@ export class CommentsEffect {
 
   @Effect()
   loadComments$ = this.actions$.pipe(
-      ofType(commentsActions.CommentsActionTypes.LoadComments),
+      ofType(CommentsActionTypes.LoadComments),
       switchMap(
-          (action: commentsActions.LoadComments) => this.commentsService.list(action.nodeId)
-              .pipe(map((comments: any) => new commentsActions.LoadCommentsSuccess(action.nodeId, comments)))),
-      catchError((commentsError: any) => of(new commentsActions.LoadCommentsFail(commentsError.nodeId, commentsError.response)))
+          (action: LoadComments) => this.commentsService.list(action.nodeId)
+              .pipe(map((comments: any) => new LoadCommentsSuccess(action.nodeId, comments)))),
+      catchError((commentsError: any) => of(new LoadCommentsFail(commentsError.nodeId, commentsError.response)))
   );
 
   @Effect()
   saveComment$ = this.actions$.pipe(
-      ofType(commentsActions.CommentsActionTypes.AddComment),
+      ofType(CommentsActionTypes.AddComment),
       switchMap(
-          (action: commentsActions.AddComment) => this.commentsService.save(action.nodeId, action.text)
-              .pipe(map(comment => new commentsActions.AddCommentSuccess(action.nodeId, comment)))),
-      catchError((commentsError: any) => of(new commentsActions.AddCommentFail(commentsError.nodeId, commentsError.response)))
+          (action: AddComment) => this.commentsService.save(action.nodeId, action.text)
+              .pipe(map(comment => new AddCommentSuccess(action.nodeId, comment)))),
+      catchError((commentsError: any) => of(new AddCommentFail(commentsError.nodeId, commentsError.response)))
+  );
+
+  @Effect()
+  saveCommentSuccess$ = this.actions$.pipe(
+      ofType(CommentsActionTypes.AddCommentSuccess),
+      map((action: AddComment) => new IncrementDocumentNodeCommentCount(action.nodeId)),
   );
 
 

@@ -1,4 +1,4 @@
-import { DocumentMetadata, Error, IDocumentConsolidate, IDocumentMetadata, IPageData, PageData } from '../../models';
+import { DocumentMetadata, Error, IDocumentConsolidate, IDocumentMetadata, IDocumentNode, IPageData, PageData } from '../../models';
 import * as fromDocuments from '../actions/documents.action';
 
 export interface DocumentsState {
@@ -77,9 +77,6 @@ export function reducer(state = initialState, action: fromDocuments.DocumentsAct
         entity: null,
         error: action.payload
       };
-    default: {
-      return state;
-    }
 
     case fromDocuments.DocumentsActionTypes.GetDocumentAssignedUsersSuccess: {
       const updatedDocument = {
@@ -92,8 +89,31 @@ export function reducer(state = initialState, action: fromDocuments.DocumentsAct
         entity: updatedDocument
       };
     }
+
+    case fromDocuments.DocumentsActionTypes.IncrementDocumentNodeCommentCount: {
+      const incrementFn = (document: IDocumentNode) => ({
+        ...document,
+        numberOfComments: document.numberOfComments + (document.id === action.nodeId ? 1 : 0),
+      });
+      return {
+        ...state,
+        entity: {
+          ...state.entity,
+          documentNode: mapDocumentNodeTree(state.entity.documentNode, incrementFn),
+        }
+      };
+    }
+
+    default: {
+      return state;
+    }
   }
 }
+
+const mapDocumentNodeTree = (document: IDocumentNode, mapping: (d) => IDocumentNode): IDocumentNode => ({
+    ...mapping(document),
+    children: document.children.map(x => mapDocumentNodeTree(x, mapping)),
+});
 
 export const getDocumentsEntities = (state: DocumentsState) => state.entities;
 export const getDocumentsLoading = (state: DocumentsState) => state.loading;
