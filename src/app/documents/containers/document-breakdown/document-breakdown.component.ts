@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   providers: [DocumentBreakdownStore]
 })
 export class DocumentBreakdownComponent implements OnInit {
-  public document$: Observable<DocumentConsolidate> = this.store.select(fromStore.getDocumentConsolidate);
+  public document$: Observable<DocumentConsolidate> = this.store.pipe(select(fromStore.getDocumentConsolidate));
   public availableUsers$: Observable<User[]> = this.store.pipe(select(fromStore.getUsers));
   public usersPageData$: Observable<PageData> = this.store.pipe(select(fromStore.getUsersPageData));
 
