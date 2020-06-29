@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class CommentsStore {
-  public expandedComments: Subject<string> = new Subject<string>();
+  private expandedComments$: Subject<string> = new Subject<string>();
   private commentsExpandState: { [key: string]: boolean } = {};
+
+  public expandedCommentsAsObservable(): Observable<string> {
+    return this.expandedComments$.asObservable();
+  }
 
   public isExpanded(commentId: string) {
     return !!this.commentsExpandState[commentId];
@@ -12,7 +16,7 @@ export class CommentsStore {
 
   public expand(commentId: string) {
     this.commentsExpandState[commentId] = true;
-    this.expandedComments.next(commentId);
+    this.expandedComments$.next(commentId);
   }
 
   public collapse(commentId: string) {

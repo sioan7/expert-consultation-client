@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import * as fromStore from '@app/core/store';
+import { getCommentsEntitiesByNodeId, LoadReplies, AddComment } from '@app/core/store';
 import { CoreState } from '@app/core/store';
 import { Observable } from 'rxjs';
 import { Comment } from '@app/core';
 import { CommentsStore } from '@app/comments/containers/comments/comments.store';
+import { BaseComponent } from '@app/shared/components/base-component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ec-comments',
@@ -12,7 +14,7 @@ import { CommentsStore } from '@app/comments/containers/comments/comments.store'
   styleUrls: ['./comments.component.scss'],
   providers: [CommentsStore],
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent extends BaseComponent implements OnInit {
   @Input() public nodeId: string;
   @Output() public commentsCollapsed: EventEmitter<void> = new EventEmitter<void>();
 
@@ -20,17 +22,18 @@ export class CommentsComponent implements OnInit {
 
   constructor(private store: Store<CoreState>,
               private commentsStore: CommentsStore) {
+    super();
   }
 
   ngOnInit() {
-    this.comments$ = this.store.pipe(select(fromStore.getCommentsEntitiesByNodeId(this.nodeId)));
-    this.commentsStore.expandedComments.subscribe((commentId: string) => {
-      this.store.dispatch(new fromStore.LoadReplies(this.nodeId, commentId));
-    });
+    this.comments$ = this.store.pipe(select(getCommentsEntitiesByNodeId(this.nodeId)));
+    this.commentsStore.expandedCommentsAsObservable()
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe((commentId: string) => this.store.dispatch(new LoadReplies(this.nodeId, commentId)));
   }
 
   onCommentAdded(comment: string) {
-    this.store.dispatch(new fromStore.AddComment(this.nodeId, comment));
+    this.store.dispatch(new AddComment(this.nodeId, comment));
   }
 
   areRepliesExpanded(commentId: string) {
