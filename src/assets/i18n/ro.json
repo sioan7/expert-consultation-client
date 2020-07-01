@@ -21,6 +21,7 @@
   "comments": {
     "placeholder": "Scrie comentariul tău aici",
     "all": "Toate comentariile",
+    "answer": "Răspunde acestui comentariu",
     "number": {
       "plural": "comentarii",
       "singular": "comentariu"

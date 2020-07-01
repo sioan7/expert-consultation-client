@@ -8,6 +8,15 @@
     "Duplicate.username": "The username is already used.",
     "Duplicate.email": "The email is already used."
   },
+  "comments": {
+    "placeholder": "Write your comment here",
+    "all": "All comments",
+    "answer": "Answer this comment",
+    "number": {
+      "plural": "comments",
+      "singular": "comment"
+    }
+  },
   "login": {
     "label": {
       "Username.or.email": "Username or email",

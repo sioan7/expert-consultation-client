@@ -8,6 +8,7 @@
         <ec-new-comment (commentAdded)="onCommentAdded($event)" [nodeId]="nodeId"></ec-new-comment>
       </div>
       <a *ngFor="let comment of comments$ | async"
+         [id]="comment.id"
          class="list-group-item list-group-item-action flex-column align-items-start py-4 px-4">
         <div class="d-flex w-100 justify-content-between">
           <div>
@@ -16,7 +17,18 @@
             </div>
           </div>
           <small> {{comment.lastEditDateTime | date}} </small></div>
-        <p class="text-sm mb-0">{{comment.text}}</p>
+        <p class="text-sm mb-2">{{comment.text}}</p>
+        <div *ngIf="!areRepliesExpanded(comment.id)" class="row justify-content-end">
+          <span (click)="expandReplies(comment.id)" class="btn-link">
+            {{'comments.answer' | translate}}
+          </span>
+        </div>
+        <div *ngIf="areRepliesExpanded(comment.id)" class="replies">
+          <ec-replies [nodeId]="nodeId"
+                      [commentId]="comment.id"
+                      (repliesCollapsed)="onRepliesCollapsed(comment.id)">
+          </ec-replies>
+        </div>
       </a>
     </div>
   </div>

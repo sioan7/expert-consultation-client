@@ -24,6 +24,7 @@ speed-measure-plugin.json
 *.sublime-workspace
 .editorconfig
 .huskyrc.json
+*.iml
 
 # IDE - VSCode
 .vscode/*

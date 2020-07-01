@@ -19,6 +19,14 @@ export class CommentsService {
         .pipe(map((iComment: IComment) => new Comment(iComment)));
   }
 
+  public listReplies(nodeId: string, commentId: string): Observable<Page<Comment>> {
+    return this.commentsApiService.listReplies(nodeId, commentId).pipe(map(value => this.mapPage(value)));
+  }
+
+  public saveReply(nodeId: string, commentId: string, text: string): Observable<Comment> {
+    return this.commentsApiService.saveReply(nodeId, commentId, text).pipe(map((iComment: IComment) => new Comment(iComment)));
+  }
+
   private mapPage(page: Page<IComment>): Page<Comment> {
     const result = new Page<Comment>(page);
     result.content = page.content.map(this.fromResponse);
