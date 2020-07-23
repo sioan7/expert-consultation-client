@@ -100,6 +100,22 @@
                   </ng-container>
                 </div>
               </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                  </div>
+                  <input [ngClass]="isValidClass(signUpForm.controls.confirmPassword)"
+                         class="form-control" formControlName="confirmPassword" name="confirmPassword"
+                         placeholder="{{'register.form.confirmPassword' | translate}}" required type="password">
+                  <ng-container *ngIf="hasErrors(signUpForm.controls.confirmPassword)">
+                    <div *ngFor="let error of signUpForm.controls.confirmPassword.errors | keyvalue"
+                         class="invalid-feedback">
+                      {{error.key | translate}}
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
               <div class="text-center">
                 <button (click)="onSubmit()" class="btn btn-success mt-4"
                         type="button">{{'register.createButton' | translate}}

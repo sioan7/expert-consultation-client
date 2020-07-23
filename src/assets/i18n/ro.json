@@ -1,5 +1,6 @@
 {
   "required": "Câmp obligatoriu.",
+  "shouldMatch": "Parolele trebuie să se potrivească.",
   "pattern": "Număr de telefon invalid",
   "phoneNumber": "Număr de telefon incorect.",
   "validation.Resource.not.found": "Resursa nu a fost găsită.",
@@ -8,7 +9,8 @@
       "fullName": "Nume complet",
       "username": "Nume utilizator",
       "email": "Email",
-      "password": "Parolă"
+      "password": "Parolă",
+      "confirmPassword": "Confirmă Parolă"
     },
     "createButton": "Finalizează înregistrarea",
     "header": "Înregistrează cont nou",

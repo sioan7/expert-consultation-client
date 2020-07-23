@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Invitation, UserRequest } from '@app/core/models';
 import { AuthenticationApiService } from '@app/core/http';
 import { Tools } from '@app/shared/utils/tools';
 import { I18nError } from '@app/core/http/errors/i18n-error';
+import { MatchControlValue } from '@app/shared/utils/matchControlValue';
 
 @Component({
   selector: 'ec-register',
@@ -19,23 +20,29 @@ export class RegisterComponent implements OnInit {
   public generalErrors: I18nError[];
   public invitation: Invitation;
 
-  public signUpForm = new FormGroup({
+  public signUpForm = this.formBuilder.group({
     name: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required])
+  }, {
+    validator: MatchControlValue('password', 'confirmPassword')
   });
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private authenticationApiService: AuthenticationApiService) {
+              private authenticationApiService: AuthenticationApiService,
+              private formBuilder: FormBuilder) {
   }
 
   public ngOnInit() {
     this.route.data.subscribe((data: Data) => {
       this.invitation = data.invitation;
-      this.signUpForm.controls.email.setValue(this.invitation.email);
-      this.signUpForm.controls.email.disable();
+      if (!!this.signUpForm && !!this.invitation) {
+        this.signUpForm.controls.email.setValue(this.invitation.email);
+        this.signUpForm.controls.email.disable();
+      }
     });
 
     this.signUpForm.valueChanges.subscribe((aValue) => {
