@@ -15,16 +15,16 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'add',
+    component: fromContainers.AddDocumentComponent,
+  },
+  {
     path: ':id',
     component: fromContainers.DocumentBreakdownComponent,
     canActivate: [
       DocumentBreakdownGuard,
     ]
   },
-  {
-    path: 'add',
-    component: fromContainers.AddDocumentComponent,
-  }
 ];
 
 @NgModule({
