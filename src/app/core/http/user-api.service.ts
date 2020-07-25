@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { IUser, Page, PageRequest } from '../models';
+import { ICurrentUser, IUser, Page, PageRequest } from '../models';
 
 @Injectable()
 export class UserApiService {
@@ -37,6 +37,13 @@ export class UserApiService {
 
   public saveExcel(usersExcel: string) {
     return this.http.post<IUser[]>(`${environment.api_url}/users/extract-from-copy`, [usersExcel], {})
+        .pipe(
+            catchError(aError => observableThrowError(aError))
+        );
+  }
+
+  public getCurrentUser(): Observable<ICurrentUser> {
+    return this.http.get<any>(`${environment.api_url}/users/currentUser`)
         .pipe(
             catchError(aError => observableThrowError(aError))
         );

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Error, Page, PageRequest, User } from '../../models';
+import { CurrentUser, Error, Page, PageRequest, User } from '../../models';
 
 export enum UserActionTypes {
   LoadUsers = '[Users] Load Users',
@@ -10,7 +10,31 @@ export enum UserActionTypes {
   SaveUserFail = '[Users] Save User Fail',
   SaveUsersExcel = '[Users] Save Users Excel',
   SaveUserExcelSuccess = '[Users] Save Users Excel Success',
-  SaveUserExcelFail = '[Users] Save Users Excel Fail'
+  SaveUserExcelFail = '[Users] Save Users Excel Fail',
+  LoadCurrentUser = '[Current User] Load Current User',
+  LoadCurrentUserSuccess = '[Current User] Load Current User Success',
+  LoadCurrentUserFail = '[Current User] Load Current User Fail'
+}
+
+export class LoadCurrentUser implements Action {
+  readonly type: string = UserActionTypes.LoadCurrentUser;
+
+  constructor(public payload: any) {
+  }
+}
+
+export class LoadCurrentUserSuccess implements Action {
+  readonly type: string = UserActionTypes.LoadCurrentUserSuccess;
+
+  constructor(public payload: CurrentUser) {
+  }
+}
+
+export class LoadCurrentUserFail implements Action {
+  readonly type: string = UserActionTypes.LoadCurrentUserSuccess;
+
+  constructor(public payload: any) {
+  }
 }
 
 export class LoadUsers implements Action {
@@ -84,4 +108,7 @@ export type UsersAction = LoadUsers
     | SaveUserFail
     | SaveUsersExcel
     | SaveUserExcelSuccess
-    | SaveUserExcelFail;
+    | SaveUserExcelFail
+    | LoadCurrentUser
+    | LoadCurrentUserSuccess
+    | LoadCurrentUserFail;

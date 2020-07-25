@@ -36,3 +36,5 @@ export const getUsersPageData = createSelector(getUsersPageDataEntityAsInterface
     });
 
 export const getUsersErrors = createSelector(getUsersState, fromUsers.getUsersErrors);
+
+export const getCurrentUser = createSelector(getUsersState, fromUsers.getCurrentUser);

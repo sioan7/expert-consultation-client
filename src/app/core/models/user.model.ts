@@ -3,6 +3,11 @@ export enum UserType {
   ADMIN
 }
 
+export interface ICurrentUser {
+  id: string;
+  fullName: string;
+}
+
 export interface IUser {
   id: string;
   firstName: string;
@@ -63,5 +68,28 @@ export class User {
 
   fromFormData(formData: any) {
     this.fromJson(formData);
+  }
+}
+
+export class CurrentUser {
+  id: string;
+  fullName: string;
+
+  constructor(aData?: ICurrentUser) {
+    if (aData) {
+      this.fromJson(aData);
+    }
+  }
+
+  fromJson(json: ICurrentUser) {
+    this.id = json.id;
+    this.fullName = json.fullName;
+  }
+
+  toJson(): ICurrentUser {
+    return {
+      id: this.id,
+      fullName: this.fullName,
+    } as ICurrentUser;
   }
 }

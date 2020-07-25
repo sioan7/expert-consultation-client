@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
-import { LoginRequest, User, UserRequest } from '../models';
+import { LoginRequest, UserRequest } from '../models';
 import { AuthenticationService } from '../services/authentication.service';
 
 export class AuthenticationData {

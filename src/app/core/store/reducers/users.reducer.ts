@@ -1,4 +1,4 @@
-import { Error, IPageData, IUser, PageData, User } from '../../models';
+import { Error, ICurrentUser, IPageData, IUser, PageData, User } from '../../models';
 import * as fromUsers from '../actions/users.action';
 
 export interface UserState {
@@ -8,6 +8,7 @@ export interface UserState {
   shouldReload: boolean;
   pageData: IPageData;
   error: Error;
+  currentUser: ICurrentUser;
 }
 
 export const initialState: UserState = {
@@ -16,7 +17,8 @@ export const initialState: UserState = {
   loading: false,
   shouldReload: true,
   pageData: {pageable: {}} as IPageData,
-  error: {} as Error
+  error: {} as Error,
+  currentUser: {} as ICurrentUser
 };
 
 export function reducer(state = initialState, action: fromUsers.UsersAction): UserState {
@@ -66,6 +68,20 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
       };
     }
 
+    case fromUsers.UserActionTypes.LoadCurrentUserSuccess: {
+      return {
+        ...state,
+        currentUser: action.payload
+      };
+    }
+
+    case fromUsers.UserActionTypes.LoadCurrentUserFail: {
+      return {
+        ...state,
+        error: action.payload
+      };
+    }
+
     default: {
       return {
         ...state,
@@ -80,3 +96,4 @@ export const getUsersLoaded = (state: UserState) => state.loaded;
 export const getUsersShouldReload = (state: UserState) => state.shouldReload;
 export const getUsersPageData = (state: UserState) => state.pageData;
 export const getUsersErrors = (state: UserState) => state.error;
+export const getCurrentUser = (state: UserState) => state.currentUser;

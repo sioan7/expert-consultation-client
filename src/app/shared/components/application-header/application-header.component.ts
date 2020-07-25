@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { AuthenticationApiService } from '@app/core';
 import { Interaction } from '@app/shared/utils/interaction';
+import { select, Store } from '@ngrx/store';
+import { UserState } from '@app/core/store';
+import * as fromUser from '@app/core/store/selectors';
 
 @Component({
   selector: 'ec-header',
@@ -10,9 +13,11 @@ import { Interaction } from '@app/shared/utils/interaction';
 })
 export class ApplicationHeaderComponent implements OnInit {
   public sidenavOpen = true;
+  public currentUser$ = this.store.pipe(select(fromUser.getCurrentUser));
 
   constructor(private router: Router,
-              private authenticationApiService: AuthenticationApiService) {
+              private authenticationApiService: AuthenticationApiService,
+              private store: Store<UserState>) {
   }
 
   ngOnInit() {

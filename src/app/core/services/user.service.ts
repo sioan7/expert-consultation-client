@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserApiService } from '../http';
 import { Observable } from 'rxjs';
-import { IUser, Page, PageRequest, User } from '../models';
+import { CurrentUser, ICurrentUser, IUser, Page, PageRequest, User } from '../models';
 import { Store } from '@ngrx/store';
 import * as fromFeature from '../store/reducers';
 import { map } from 'rxjs/operators';
@@ -31,6 +31,13 @@ export class UserService {
 
   public saveUsersExcel(usersExcel: string): Observable<IUser[]> {
     return this.usersApiService.saveExcel(usersExcel);
+  }
+
+  public getCurrentUser(): Observable<ICurrentUser> {
+    return this.usersApiService.getCurrentUser()
+        .pipe(
+            map((currentUser: ICurrentUser) => new CurrentUser(currentUser))
+        );
   }
 
   private fromResponse(userResponse: IUser): User {

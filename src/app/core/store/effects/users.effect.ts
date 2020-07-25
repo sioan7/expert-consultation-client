@@ -4,7 +4,7 @@ import * as usersActions from '../actions/users.action';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { UserService } from '../../services';
 import { of } from 'rxjs';
-import { Error, Page, PageRequest, User } from '../../models';
+import { CurrentUser, Error, Page, PageRequest, User } from '../../models';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -59,6 +59,18 @@ export class UsersEffects {
       ofType(usersActions.UserActionTypes.SaveUserExcelSuccess),
       take(1),
       tap(() => this.router.navigate(['/users']))
+  );
+
+  @Effect()
+  loadCurrentUser$ = this.actions$.pipe(
+      ofType(usersActions.UserActionTypes.LoadCurrentUser),
+      switchMap(() => {
+        return this.usersService.getCurrentUser()
+            .pipe(
+                map((user: CurrentUser) => new usersActions.LoadCurrentUserSuccess(user)),
+                catchError(error => of(new usersActions.LoadCurrentUserFail(error)))
+            );
+      })
   );
 
   constructor(private actions$: Actions,

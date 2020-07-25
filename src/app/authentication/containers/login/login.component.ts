@@ -6,6 +6,9 @@ import { Tools } from '@app/shared/utils/tools';
 import { AuthenticationApiService } from '@app/core/http';
 import { LoginRequest } from '@app/core/models';
 import { AuthenticationService } from '@app/core';
+import * as fromStore from '@app/core/store';
+import { CoreState } from '@app/core/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ec-login',
@@ -28,7 +31,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private authenticationApiService: AuthenticationApiService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private store: Store<CoreState>) {
     // redirect to home if already logged in
     if (authService.isUserLoggedIn()) {
       this.router.navigate(['/']);
@@ -53,7 +57,10 @@ export class LoginComponent implements OnInit {
 
     this.authenticationApiService.login(this.loginRequest)
         .subscribe({
-          next: login => this.router.navigate([this.returnUrl]),
+          next: login => {
+            this.store.dispatch(new fromStore.LoadCurrentUser({}));
+            this.router.navigate([this.returnUrl]);
+          },
           error: errors => {
             this.wasValidated = true;
             this.generalErrors = Tools.safeGet(() => errors.error.i18nErrors);
