@@ -16,12 +16,12 @@
       <span (click)="expandComments()">{{'button.add-comment' | translate}}</span>
     </div>
     <div>
-      <span (click)="expandComments()" *ngIf="article.numberOfComments != 1" class="btn-link">
+      <button (click)="expandComments()" *ngIf="article.numberOfComments != 1" class="btn btn-link">
         {{article.numberOfComments}} {{'comments.number.plural' | translate}}
-      </span>
-      <span (click)="expandComments()" *ngIf="article.numberOfComments == 1" class="btn-link">
+      </button>
+      <button (click)="expandComments()" *ngIf="article.numberOfComments == 1" class="btn btn-link">
         {{article.numberOfComments}} {{'comments.number.singular' | translate}}
-      </span>
+      </button>
     </div>
   </div>
   <ec-comments (commentsCollapsed)="collapseComments()" *ngIf=isExpanded [nodeId]="article.id">
